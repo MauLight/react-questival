@@ -7,8 +7,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        site: 'url(\'./img/joyBook_02.png\')',
-        site2: 'url(\'./img/bg-site.png\')',
+        alien: 'url(\'./assets/bg.jpg\')',
       },
       fontFamily: {
         primary: 'Josefin Sans',

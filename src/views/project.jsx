@@ -2,15 +2,18 @@ import { ArrowLeft, ArrowRight, Quotes } from '@carbon/icons-react'
 import { motion } from 'framer-motion'
 import { fadeInSmall } from '../variants'
 import { useState } from 'react'
+import them from '../assets/Them.jpg'
 
 const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+
+// const placeholder = 'https://placehold.co/600x400?text=POSTER'
 
 export const Project = () => {
 
   const [page, setPage] = useState(1)
 
-  const [title, setTitle] = useState('Son of Man')
-  const [poster, setPoster] = useState('https://placehold.co/600x400?text=POSTER')
+  const [title, setTitle] = useState('Them')
+  const [poster, setPoster] = useState(them)
   const [logline, setLogline] = useState('')
   const [summary, setSummary] = useState('')
 
@@ -53,7 +56,7 @@ export const Project = () => {
   }
 
   return (
-    <div className="w-screen flex flex-col h-screen bg-[#2c262d] text-white text-2xl font-body overflow-y-hidden">
+    <div className="w-screen flex flex-col h-screen bg-alien text-white text-2xl font-body overflow-y-hidden">
       <>
         {
           page === 1 && (
@@ -434,6 +437,126 @@ export const Project = () => {
                         <label htmlFor='resolve'>Test Resolve_</label>
                         <input placeholder={lorem} id='resolve' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl  w-[28vw]' value={resolve} onChange={({ target }) => setResolve(target.value)} />
                       </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </motion.div>
+          )
+        }
+      </>
+      <>
+        {
+          page === 6 && (
+            <motion.div
+              variants={fadeInSmall('left', 0.2)}
+              initial="hidden"
+              whileInView={'show'}
+              viewport={{ once: false, amount: 0.7 }}
+              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
+              <div className="mr-auto pl-[250px]">
+
+                <div className="flex flex-col justify-center">
+                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
+                  <div className="flex justify-between">
+                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
+                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
+                      <p className='font-body text-black text-sm'>{'DATE'}</p>
+
+                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div className="w-full pl-[250px]">
+                <div className="lg:flex gap-x-20">
+                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+
+                    <label>
+                      <img src={poster} className={'w-full min-h-full object-cover'} />
+                      <input
+                        type="file"
+                        name="upload-avatar"
+                        onChange={(e) => handlePoster(e)}
+                        className="w-0 h-0 p-0 m-0"
+                      />
+                    </label>
+                  </div>
+
+                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
+
+                    <div className="flex">
+                      <iframe
+                        className='rounded-[10px] h-[49.7vh]'
+                        src={'https://drive.google.com/file/d/1TK_DnG7vnbrDx7J178_0jHNqZ8mTobKD/preview'}
+                        width="1080"
+                        height="443"
+                        allow="autoplay"
+                      ></iframe>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </motion.div>
+          )
+        }
+      </>
+      <>
+        {
+          page === 7 && (
+            <motion.div
+              variants={fadeInSmall('left', 0.2)}
+              initial="hidden"
+              whileInView={'show'}
+              viewport={{ once: false, amount: 0.7 }}
+              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
+              <div className="mr-auto pl-[250px]">
+
+                <div className="flex flex-col justify-center">
+                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
+                  <div className="flex justify-between">
+                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
+                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
+                      <p className='font-body text-black text-sm'>{'DATE'}</p>
+
+                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div className="w-full pl-[250px]">
+                <div className="lg:flex gap-x-20">
+                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+
+                    <label>
+                      <img src={poster} className={'w-full min-h-full object-cover'} />
+                      <input
+                        type="file"
+                        name="upload-avatar"
+                        onChange={(e) => handlePoster(e)}
+                        className="w-0 h-0 p-0 m-0"
+                      />
+                    </label>
+                  </div>
+
+                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
+
+                    <div className="flex">
+                      <iframe
+                        className='rounded-[10px] h-[49.7vh]'
+                        src={'https://drive.google.com/file/d/1cFp5STS1cYfrtmnsgodWNES0gQMG91cH/preview'}
+                        width="1080"
+                        height="443"
+                        allow="autoplay"
+                      ></iframe>
                     </div>
 
                   </div>
