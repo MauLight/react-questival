@@ -7,15 +7,20 @@ import { Banner } from './components/Banner'
 import { Feed } from './components/Feed'
 import { Profile } from './components/Profile'
 import { InfinitySpin } from 'react-loader-spinner'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useMatch } from 'react-router-dom'
 import { Syllabus } from './views/syllabus'
 import { Project } from './views/project'
+import { Blog } from './views/blog'
+import { BlogPost } from './views/blogPost'
 
 export const App = () => {
 
   const [token, setToken] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
   const [type, setType] = useState(null)
+
+  const matchBlog = useMatch('/blogpost/:id')
+  const blogId = matchBlog ? matchBlog.params.id : null
 
   const resultPosts = useQuery(ALL_POSTS)
 
@@ -77,6 +82,8 @@ export const App = () => {
     }, 10000)
   }
 
+
+
   return (
     <div id='joybook' className={'min-[1200px]:flex relative bg-[#3b1950] h-screen'}>
       <div className="flex justify-center items-center ">
@@ -96,6 +103,8 @@ export const App = () => {
                   <Route path="/" element={<Feed data={posts} setError={setErrorMessage} />} />
                   <Route path="/syllabus" element={<Syllabus />} />
                   <Route path="/myproject" element={<Project />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blogpost/:id" element={<BlogPost blogId={blogId} />} />
                 </Routes>
               </div>
             </div>

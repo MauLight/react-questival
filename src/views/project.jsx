@@ -13,6 +13,7 @@ export const Project = () => {
   const [page, setPage] = useState(1)
 
   const [title, setTitle] = useState('Them')
+  // eslint-disable-next-line no-unused-vars
   const [poster, setPoster] = useState(them)
   const [logline, setLogline] = useState('')
   const [summary, setSummary] = useState('')
@@ -35,6 +36,7 @@ export const Project = () => {
   const [need, setNeed] = useState('')
 
   //THE PROTAGONIST'S ARC
+  // eslint-disable-next-line no-unused-vars
   const [protagonist, setProtagonist] = useState('https://placehold.co/600x400?text=Protagonist')
   const [chLogline, setChLogline] = useState('')
   const [belief, setBelief] = useState('')
@@ -51,6 +53,7 @@ export const Project = () => {
   const [distance, setDistance] = useState('')
   const [resolve, setResolve] = useState('')
 
+  // eslint-disable-next-line no-unused-vars
   const handlePoster = (e) => {
     alert('HEY!')
   }
@@ -573,7 +576,11 @@ export const Project = () => {
             <ArrowLeft onClick={() => setPage(page - 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
           )
         }
-        <ArrowRight onClick={() => setPage(page + 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
+        {
+          page < 7 && (
+            <ArrowRight onClick={() => setPage(page + 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
+          )
+        }
       </div>
     </div>
   )

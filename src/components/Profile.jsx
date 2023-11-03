@@ -106,10 +106,10 @@ export const Profile = ({ setError, setToken }) => {
           <TableOfContents size={16} />
           <p className='text-sm font-body'>Syllabus</p>
         </Link>
-        <button className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
+        <Link to={'/blog'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
           <Blog size={16} />
           <p className='text-sm font-body'>Blog</p>
-        </button>
+        </Link>
         <button className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
           <SendAlt size={16} />
           <p className='text-sm font-body'>Contact</p>
