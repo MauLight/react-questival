@@ -117,7 +117,7 @@ export const Profile = ({ setError, setToken }) => {
 
       </div>
 
-      <div className='flex justify-center items-center mt-auto mb-10'>
+      <div className='flex justify-center items-center mt-auto mb-[53%]'>
         <motion.button
           onClick={handleLogOut}
           whileHover={{ scale: 1.1 }}

@@ -13,8 +13,11 @@ import { Project } from './views/project'
 import { Blog } from './views/blog'
 import { BlogPost } from './views/blogPost'
 
+import projectsService from './services/projects'
+
 export const App = () => {
 
+  const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [type, setType] = useState(null)
@@ -50,13 +53,13 @@ export const App = () => {
     }
   })
 
-  useEffect(() => {
-    const token = localStorage.getItem('joybook-user-token')
-    console.log(token)
-    if (token) {
-      setToken(token)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('joybook-user-token')
+  //   console.log(token)
+  //   if (token) {
+  //     setToken(token)
+  //   }
+  // }, [])
 
   if (resultPosts.loading) {
     return (
@@ -82,14 +85,20 @@ export const App = () => {
     }, 10000)
   }
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('QuestivalUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      projectsService.setToken(user.token)
+    }
+  }, [])
+
 
 
   return (
     <div id='joybook' className={'min-[1200px]:flex relative bg-[#3b1950] h-screen'}>
-      <div className="flex justify-center items-center ">
-        <div className="absolute top-[10%] z-40">
-          <Notification errorMessage={errorMessage} type={type} />
-        </div>
+      <div className="absolute top-[10%] left-[45%] z-40">
+        <Notification errorMessage={errorMessage} type={type} />
       </div>
       {
         token ?
@@ -102,7 +111,7 @@ export const App = () => {
                 <Routes>
                   <Route path="/" element={<Feed data={posts} setError={setErrorMessage} />} />
                   <Route path="/syllabus" element={<Syllabus />} />
-                  <Route path="/myproject" element={<Project setError={setErrorMessage} />} />
+                  <Route path="/myproject" element={<Project user={user} setError={setErrorMessage} />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blogpost/:id" element={<BlogPost blogId={blogId} />} />
                 </Routes>
@@ -112,7 +121,7 @@ export const App = () => {
           :
           (
             <>
-              <JoyForm setToken={setToken} setError={notify} />
+              <JoyForm setUser={setUser} setToken={setToken} setError={notify} />
               <Banner />
             </>
           )

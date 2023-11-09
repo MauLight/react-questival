@@ -2,22 +2,24 @@ import { ArrowLeft, ArrowRight, Quotes } from '@carbon/icons-react'
 import { motion } from 'framer-motion'
 import { fadeInSmall } from '../variants'
 import { useState } from 'react'
-import them from '../assets/Them.jpg'
 import projectsService from '../services/projects'
+import { getUser } from '../services/user'
+import { useEffect } from 'react'
 
 const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
-// const placeholder = 'https://placehold.co/600x400?text=POSTER'
+const placeholder = 'https://placehold.co/600x400?text=POSTER'
 
-export const Project = ({ setError }) => {
+export const Project = ({ user, setError }) => {
 
   const [page, setPage] = useState(1)
+  const [currentUser, setCurrentUser] = useState(null)
 
-  const [title, setTitle] = useState('Them')
+  const [title, setTitle] = useState('')
   const [genre, setGenre] = useState([])
   const [rating, setRating] = useState('')
   // eslint-disable-next-line no-unused-vars
-  const [poster, setPoster] = useState(them)
+  const [poster, setPoster] = useState(placeholder)
   const [logline, setLogline] = useState('')
   const [summary, setSummary] = useState('')
 
@@ -126,12 +128,36 @@ export const Project = ({ setError }) => {
       wallpaper
     }
 
-    projectsService.create(project)
-    setError('Project saved!')
+    if(currentUser) {
+      const id = currentUser.projects[0]._id
+      projectsService.update(id, project).then(response => {
+        console.log(response)
+        setError('Project updated!', 'green')
+        setTimeout(() => setError(null), 5000)
+      })
+    }
+    else {
+      projectsService.create(project).then(response => {
+        console.log(response)
+        setError('Project saved!', 'green')
+        setTimeout(() => setError(null), 5000)
+      })
+    }
   }
 
+  useEffect(() => {
+    getUser(user.id).then(response => {
+
+      if (response) {
+        console.log(response)
+        setCurrentUser(response)
+      }
+    }
+    )
+  }, [])
+
   return (
-    <div className="w-screen flex flex-col h-screen bg-alien text-white text-2xl font-body overflow-y-hidden">
+    <div className="w-screen flex flex-col h-screen bg-[#2c262d] text-white text-2xl font-body overflow-y-hidden">
       <>
         {
           page === 1 && (
@@ -144,7 +170,7 @@ export const Project = ({ setError }) => {
               <div className="mr-auto pl-[250px]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
+                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                   <div className="flex justify-between">
                     <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
                     <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
@@ -651,7 +677,7 @@ export const Project = ({ setError }) => {
           onClick={handleSave}
           whileHover={{ scale: 1.1 }}
           transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-          className='font-carbon text-[10px] border-2 p-4 mt-10 rounded-full w-[70px] h-[70px] bg-[#2c262d] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
+          className='font-carbon text-[10px] border-2 p-4 mt-11 rounded-full w-[70px] h-[70px] bg-[#2c262d] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
         >Save</motion.button>
         <div className="flex">
           {

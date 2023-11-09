@@ -7,14 +7,13 @@ import { motion } from 'framer-motion'
 import loginService from '../services/login'
 import projectsService from '../services/projects'
 
-export const JoyForm = ({ setToken, setError }) => {
+export const JoyForm = ({ setUser, setToken, setError }) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   //REST Login
   // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState(null)
 
   const handleLogin = async e => {
     e.preventDefault()
@@ -30,6 +29,8 @@ export const JoyForm = ({ setToken, setError }) => {
       const user = await loginService.login({
         email, password
       })
+      console.log(user)
+      window.localStorage.setItem('QuestivalUser', JSON.stringify(user))
       projectsService.setToken(user.token)
       setUser(user)
       setToken(user)
