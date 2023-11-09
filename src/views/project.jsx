@@ -3,16 +3,19 @@ import { motion } from 'framer-motion'
 import { fadeInSmall } from '../variants'
 import { useState } from 'react'
 import them from '../assets/Them.jpg'
+import projectsService from '../services/projects'
 
 const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
 // const placeholder = 'https://placehold.co/600x400?text=POSTER'
 
-export const Project = () => {
+export const Project = ({ setError }) => {
 
   const [page, setPage] = useState(1)
 
   const [title, setTitle] = useState('Them')
+  const [genre, setGenre] = useState([])
+  const [rating, setRating] = useState('')
   // eslint-disable-next-line no-unused-vars
   const [poster, setPoster] = useState(them)
   const [logline, setLogline] = useState('')
@@ -22,7 +25,7 @@ export const Project = () => {
   const [problem, setProblem] = useState('')
   const [take, setTake] = useState('')
   const [concept, setConcept] = useState('')
-  const [myth, setMyth] = useState('')
+  const [myth_u, setMyth_u] = useState('')
 
   //THE DRAMATIC BASIS OF STORY
   const [theme, setTheme] = useState('')
@@ -37,7 +40,7 @@ export const Project = () => {
 
   //THE PROTAGONIST'S ARC
   // eslint-disable-next-line no-unused-vars
-  const [protagonist, setProtagonist] = useState('https://placehold.co/600x400?text=Protagonist')
+  const [protagonist_u, setProtagonist] = useState('https://placehold.co/600x400?text=Protagonist')
   const [chLogline, setChLogline] = useState('')
   const [belief, setBelief] = useState('')
   const [falseBehavior, setFalseBehavior] = useState('')
@@ -48,14 +51,83 @@ export const Project = () => {
 
   //OBJECTIVE & OPPOSITION
   const [objective, setObjective] = useState('')
-  const [antagonismA, setAntagonismA] = useState('')
+  const [antagonismAnt, setAntagonismAnt] = useState('')
+  const [antagonismAll, setAntagonismAll] = useState('')
   const [sameObjective, setSameObjective] = useState('')
   const [distance, setDistance] = useState('')
   const [resolve, setResolve] = useState('')
 
+  //*UPLOADED FILES
+  const [screenplay, setScreenplay] = useState('')
+  const [pitch, setPitch] = useState('')
+  const [wallpaper, setWallpaper] = useState('')
+
   // eslint-disable-next-line no-unused-vars
   const handlePoster = (e) => {
     alert('HEY!')
+  }
+
+  const handleSave = () => {
+
+    const myth = {
+      problem,
+      take,
+      concept,
+      myth_u
+    }
+
+    const basis = {
+      theme,
+      truth,
+      contrapositive,
+      lie,
+      flaw,
+      wound,
+      want,
+      antagonism,
+      need
+    }
+
+    const protagonist = {
+      protagonist_u,
+      chLogline,
+      belief,
+      falseBehavior,
+      uncertainty,
+      trueBehavior,
+      rightAction,
+      trueCharacter
+    }
+
+    const opposition = {
+      objective,
+      antagonismAnt,
+      antagonismAll,
+      sameObjective,
+      distance,
+      resolve
+    }
+
+
+
+    const project = {
+      title,
+      logline,
+      genre,
+      rating,
+      summary,
+      myth,
+      basis,
+      protagonist,
+      opposition,
+      screenplay,
+      pitch,
+      poster,
+      wallpaper
+    }
+
+    projectsService.create(project)
+    setError('Project saved!')
   }
 
   return (
@@ -87,17 +159,21 @@ export const Project = () => {
               </div>
               <div className="w-full pl-[250px]">
                 <div className="lg:flex gap-x-20">
-                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+                  <div className="flex flex-col">
 
-                    <label>
-                      <img src={poster} className={'w-full min-h-full object-cover'} />
-                      <input
-                        type="file"
-                        name="upload-avatar"
-                        onChange={(e) => handlePoster(e)}
-                        className="w-0 h-0 p-0 m-0"
-                      />
-                    </label>
+
+                    <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+
+                      <label>
+                        <img src={poster} className={'w-full min-h-full object-cover'} />
+                        <input
+                          type="file"
+                          name="upload-avatar"
+                          onChange={(e) => handlePoster(e)}
+                          className="w-0 h-0 p-0 m-0"
+                        />
+                      </label>
+                    </div>
                   </div>
 
                   <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
@@ -177,7 +253,7 @@ export const Project = () => {
                     </div>
                     <div className="flex flex-col">
                       <label htmlFor='summary'>Myth_</label>
-                      <input placeholder={lorem} type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl w-[50vw]' value={myth} onChange={({ target }) => setMyth(target.value)} />
+                      <input placeholder={lorem} type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl w-[50vw]' value={myth_u} onChange={({ target }) => setMyth_u(target.value)} />
                     </div>
 
                   </div>
@@ -311,7 +387,7 @@ export const Project = () => {
                   <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
 
                     <label>
-                      <img src={protagonist} className={'w-full min-h-full object-cover'} />
+                      <img src={protagonist_u} className={'w-full min-h-full object-cover'} />
                       <input
                         type="file"
                         name="upload-avatar"
@@ -419,11 +495,11 @@ export const Project = () => {
                       <div className="flex gap-x-10">
                         <div className="flex flex-col">
                           <label htmlFor='antagonismA'>Antagonism by Antagonist_</label>
-                          <input placeholder={lorem} id='antagonismA' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl  w-[28vw]' value={antagonismA} onChange={({ target }) => setAntagonismA(target.value)} />
+                          <input placeholder={lorem} id='antagonismA' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl  w-[28vw]' value={antagonismAnt} onChange={({ target }) => setAntagonismAnt(target.value)} />
                         </div>
                         <div className="flex flex-col">
                           <label htmlFor='wound'>Antagonism by Allies_</label>
-                          <input placeholder={lorem} id='wound' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl  w-[28vw]' value={wound} onChange={({ target }) => setWound(target.value)} />
+                          <input placeholder={lorem} id='wound' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl  w-[28vw]' value={antagonismAll} onChange={({ target }) => setAntagonismAll(target.value)} />
                         </div>
                       </div>
                       <div className="flex gap-x-10">
@@ -570,17 +646,25 @@ export const Project = () => {
           )
         }
       </>
-      <div className="flex gap-x-10 ml-auto pr-20">
-        {
-          page > 1 && (
-            <ArrowLeft onClick={() => setPage(page - 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
-          )
-        }
-        {
-          page < 7 && (
-            <ArrowRight onClick={() => setPage(page + 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
-          )
-        }
+      <div className="flex justify-between gap-x-10 ml-[21%] pr-20">
+        <motion.button
+          onClick={handleSave}
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+          className='font-carbon text-[10px] border-2 p-4 mt-10 rounded-full w-[70px] h-[70px] bg-[#2c262d] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
+        >Save</motion.button>
+        <div className="flex">
+          {
+            page > 1 && (
+              <ArrowLeft onClick={() => setPage(page - 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
+            )
+          }
+          {
+            page < 7 && (
+              <ArrowRight onClick={() => setPage(page + 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
+            )
+          }
+        </div>
       </div>
     </div>
   )

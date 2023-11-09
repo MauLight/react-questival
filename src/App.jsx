@@ -15,7 +15,7 @@ import { BlogPost } from './views/blogPost'
 
 export const App = () => {
 
-  const [token, setToken] = useState(true)
+  const [token, setToken] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [type, setType] = useState(null)
 
@@ -102,7 +102,7 @@ export const App = () => {
                 <Routes>
                   <Route path="/" element={<Feed data={posts} setError={setErrorMessage} />} />
                   <Route path="/syllabus" element={<Syllabus />} />
-                  <Route path="/myproject" element={<Project />} />
+                  <Route path="/myproject" element={<Project setError={setErrorMessage} />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blogpost/:id" element={<BlogPost blogId={blogId} />} />
                 </Routes>
