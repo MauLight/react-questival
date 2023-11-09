@@ -61,6 +61,14 @@ export const App = () => {
   //   }
   // }, [])
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('QuestivalUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      projectsService.setToken(user.token)
+    }
+  }, [])
+
   if (resultPosts.loading) {
     return (
       <div className='flex justify-center items-center h-[700px] w-full'>
@@ -84,16 +92,6 @@ export const App = () => {
       setErrorMessage(null)
     }, 10000)
   }
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('QuestivalUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      projectsService.setToken(user.token)
-    }
-  }, [])
-
-
 
   return (
     <div id='joybook' className={'min-[1200px]:flex relative bg-[#3b1950] h-screen'}>

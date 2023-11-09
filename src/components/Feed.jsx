@@ -20,7 +20,7 @@ export const Feed = ({ setError }) => {
 
   return (
     <div
-      className="joy hidden min-[1200px]:flex items-center pl-[340px] gap-x-5 overflow-x-scroll scrollbar-none py-10 h-screen bg-[#2c262d] w-screen"
+      className="joy hidden min-[1200px]:flex items-center pl-[340px] gap-x-5 overflow-x-scroll scrollbar-none py-10 h-screen bg-[#3b1950] w-screen"
     >
       {
         lessons && lessons.map(post => <Card

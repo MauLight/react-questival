@@ -12,7 +12,8 @@ export const Card = ({ id, title, lesson, img, body, tags }) => {
       whileInView={'show'}
       viewport={{ once: false, amount: 0.7 }}
       key={id}
-      className='lg:min-w-[35vw] h-full object-contain object-center overflow-hidden text-black bg-[#1b1b1b] rounded-r-[15px] px-5 py-10 mx-5'
+      className='lg:min-w-[35vw] h-full object-contain object-center overflow-hidden border-2 border-white bg-[#1b1b1b] hover:opacity-10 rounded-r-[15px] px-5 py-10 mx-5'
+      style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover' }}
     >
       <h1 className='font-carbon text-lg mb-1 text-[#aaaaaa] uppercase'>{'// Lesson ' + lesson}</h1>
       <h1 className='font-title2 text-[40px] mb-4 text-white'>{title}</h1>
@@ -28,7 +29,7 @@ export const Card = ({ id, title, lesson, img, body, tags }) => {
         }
       </div>
       <div className="flex">
-        <p className='text-lg font-carbon text-[#aaaaaa]'>{body}</p>
+        <p className='text-xl font-carbon text-white'>{body}</p>
       </div>
     </motion.div>
   )

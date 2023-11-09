@@ -42,7 +42,7 @@ export const Project = ({ user, setError }) => {
 
   //THE PROTAGONIST'S ARC
   // eslint-disable-next-line no-unused-vars
-  const [protagonist_u, setProtagonist] = useState('https://placehold.co/600x400?text=Protagonist')
+  const [protagonist_u, setProtagonist_u] = useState('')
   const [chLogline, setChLogline] = useState('')
   const [belief, setBelief] = useState('')
   const [falseBehavior, setFalseBehavior] = useState('')
@@ -157,13 +157,49 @@ export const Project = ({ user, setError }) => {
       if (response) {
         console.log(response)
         setCurrentUser(response)
+        setTitle(response.projects[0].title)
+        setLogline(response.projects[0].logline)
+        setGenre(response.projects[0].genre)
+        setRating(response.projects[0].rating)
+        setSummary(response.projects[0].summary)
+        setProblem(response.projects[0].myth.problem)
+        setTake(response.projects[0].myth.take)
+        setConcept(response.projects[0].myth.concept)
+        setMyth_u(response.projects[0].myth.myth_u)
+        setTheme(response.projects[0].basis.theme)
+        setTruth(response.projects[0].basis.truth)
+        setContrapositive(response.projects[0].basis.contrapositive)
+        setLie(response.projects[0].basis.lie)
+        setFlaw(response.projects[0].basis.flaw)
+        setWound(response.projects[0].basis.wound)
+        setWant(response.projects[0].basis.want)
+        setAntagonism(response.projects[0].basis.antagonism)
+        setNeed(response.projects[0].basis.need)
+        setProtagonist_u(response.projects[0].protagonist.protagonist_u)
+        setChLogline(response.projects[0].protagonist.chLogline)
+        setBelief(response.projects[0].protagonist.belief)
+        setFalseBehavior(response.projects[0].protagonist.falseBehavior)
+        setUncertainty(response.projects[0].protagonist.uncertainty)
+        setTrueBehavior(response.projects[0].protagonist.trueBehavior)
+        setRightAction(response.projects[0].protagonist.rightAction)
+        setTrueCharacter(response.projects[0].protagonist.trueCharacter)
+        setObjective(response.projects[0].opposition.objective)
+        setAntagonismAnt(response.projects[0].protagonist.antagonismAnt)
+        setAntagonismAll(response.projects[0].protagonist.antagonismAll)
+        setSameObjective(response.projects[0].protagonist.sameObjective)
+        setDistance(response.projects[0].protagonist.distance)
+        setResolve(response.projects[0].protagonist.resolve)
+        setScreenplay(response.projects[0].screenplay)
+        setPitch(response.projects[0].pitch)
+        setPoster(response.projects[0].poster)
+        setWallpaper(response.projects[0].wallpaper)
       }
     }
     )
   }, [])
 
   return (
-    <div className="w-screen flex flex-col h-screen bg-[#2c262d] text-white text-2xl font-body overflow-y-hidden">
+    <div className="w-screen flex flex-col h-screen bg-[#3b1950] text-white text-2xl font-body overflow-y-hidden">
       <>
         {
           page === 1 && (
@@ -419,7 +455,7 @@ export const Project = ({ user, setError }) => {
                   <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
 
                     <label>
-                      <img src={protagonist_u} className={'w-full min-h-full object-cover'} />
+                      <img src={protagonist_u || 'https://placehold.co/600x400?text=Protagonist'} className={'w-full min-h-full object-cover'} />
                       <input
                         type="file"
                         name="upload-avatar"

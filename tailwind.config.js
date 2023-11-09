@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         alien: 'url(\'./assets/bg.jpg\')',
+        texture: 'url(\'./assets/bg_texture.jpg\')'
       },
       fontFamily: {
         primary: 'Josefin Sans',

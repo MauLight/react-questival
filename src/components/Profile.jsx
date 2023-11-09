@@ -75,9 +75,11 @@ export const Profile = ({ setError, setToken }) => {
   }
 
   return (
-    <div className="flex justify-center items-center flex-col gap-y-2 px-2 bg-site h-screen">
+    <div className="shadow flex justify-center items-center object-cover flex-col gap-y-2 px-2 h-screen"
+      style={{ backgroundImage: 'url(\'https://i.postimg.cc/YjcVyQtz/bg-profile.png\')', backgroundSize: 'cover' }}
+    >
       <div className='flex flex-col my-10'>
-        <h1 className='text-xl font-title2 text-white uppercase glow'>Questival</h1>
+        <h1 className='text-2xl font-title2 text-white uppercase glow'>Questival</h1>
       </div>
 
       <div className='flex items-center w-full justify-center'>
@@ -92,7 +94,7 @@ export const Profile = ({ setError, setToken }) => {
         </label>
       </div>
 
-      <div className="flex flex-col gap-y-2">
+      <div className="flex flex-col justify-start items-start gap-y-5 p-5 mt-10 rounded-[10px]">
 
         <Link to={'/myproject'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
           <Schematics size={16} />
@@ -110,10 +112,10 @@ export const Profile = ({ setError, setToken }) => {
           <Blog size={16} />
           <p className='text-sm font-body'>Blog</p>
         </Link>
-        <button className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
+        <Link to={'/'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
           <SendAlt size={16} />
           <p className='text-sm font-body'>Contact</p>
-        </button>
+        </Link>
 
       </div>
 
