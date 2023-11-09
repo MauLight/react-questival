@@ -71,6 +71,12 @@ export const Project = ({ user, setError }) => {
 
   const handleSave = () => {
 
+    if (title === '' || logline === '' || summary === '') {
+      setError('You didn\'t write anything!')
+      setTimeout(() => setError(null), 5000)
+      return -1
+    }
+
     const myth = {
       problem,
       take,
