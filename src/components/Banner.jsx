@@ -1,9 +1,9 @@
-import hero from '../assets/hero.mp4'
+import hero from '../assets/end.mp4'
 
 export const Banner = () => {
   return (
     <div
-      className="joy hidden min-[1200px]:flex w-full h-screen"
+      className="flex w-full h-screen overflow-hidden scrollbar-none"
     >
       <video
         src={hero}
@@ -12,7 +12,7 @@ export const Banner = () => {
         controls={false}
         muted
         autoPlay
-        className="object-cover w-full h-auto box-border overflow-hidden"
+        className="object-cover w-full min-h-screen box-border overflow-hidden scrollbar-none opacity-20"
       />
     </div>
   )

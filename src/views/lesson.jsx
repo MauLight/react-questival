@@ -1,4 +1,4 @@
-import hero from '../assets/hero.mp4'
+import hero from '../assets/video_lesson_1.mp4'
 
 export const Lesson = ({ lessons, lessonId }) => {
 
@@ -8,7 +8,7 @@ export const Lesson = ({ lessons, lessonId }) => {
 
   return (
     <div className="flex w-screen h-screen pl-[190px] overflow-y-hidden">
-      <div className="flex flex-col w-full border border-[#464648] overflow-y-scroll">
+      <div className="flex flex-col w-full border-r border-[#464648] overflow-y-scroll">
         <video
           src={hero}
           type='video/mp4'
@@ -16,7 +16,7 @@ export const Lesson = ({ lessons, lessonId }) => {
           controls={false}
           muted
           autoPlay
-          className="object-cover w-full min-h-[68.89vh] box-border overflow-hidden border-b border-[#464648]"
+          className="object-cover w-full min-h-[69.1vh] max-h-[69.1vh] box-border overflow-hidden border-b border-[#464648]"
         />
         <div className='px-20 py-10 '>
           <p className='font-body text-xl text-white'>
@@ -26,11 +26,11 @@ export const Lesson = ({ lessons, lessonId }) => {
       </div>
       <div className="flex flex-col h-screen w-[13%] border-t border-[#464648] mt-10">
         <div className='text-2xl font-title2 text-white p-5 text-center border-b border-[#464648] uppercase glow'>Lessons</div>
-        <div className="my-5 border-b border-[#464648] h-[55.2vh]">
+        <div className="my-5 border-b border-[#464648] h-[55.3vh]">
           {
             lessonFilter[0].elements.map((elem, i) => (
               <ul className='pl-5' key={elem}>
-                <li className='text-[#aaaaaa] text-sm hover:text-white transition-color duration-200 font-body my-5'>{`${i}. ${elem}`}</li>
+                <li className='text-[#aaaaaa] cursor-pointer text-sm hover:text-white transition-color duration-200 font-body my-5'>{`${i + 1}. ${elem}`}</li>
               </ul>
             ))
           }

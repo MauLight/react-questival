@@ -1,18 +1,12 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { fadeInSmall } from '../variants'
+
 
 export const Card = ({ id, title, lesson, img, body, tags }) => {
 
 
   return (
-    <motion.div
-      variants={fadeInSmall('left', 0.2)}
-      initial="hidden"
-      whileInView={'show'}
-      viewport={{ once: true, amount: 0.7 }}
+    <div
       key={id}
-      className='lg:min-w-[35vw] h-full object-contain object-center overflow-hidden border-x border-[#464648] bg-[#1b1b1b] hover:opacity-10 py-10'
+      className='lg:min-w-[35vw] h-full object-contain object-center overflow-hidden border-x border-[#464648] bg-[#1b1b1b] py-10'
       style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover' }}
     >
       <h1 className='font-body text-lg mb-1 text-[#aaaaaa] uppercase px-5'>{'// Lesson ' + lesson}</h1>
@@ -31,6 +25,6 @@ export const Card = ({ id, title, lesson, img, body, tags }) => {
       <div className="flex px-5 border-t py-5 border-[#464648]">
         <p className='text-xl font-body text-white'>{body}</p>
       </div>
-    </motion.div>
+    </div>
   )
 }

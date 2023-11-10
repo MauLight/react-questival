@@ -5,6 +5,7 @@ import { useState } from 'react'
 import projectsService from '../services/projects'
 import { getUser } from '../services/user'
 import { useEffect } from 'react'
+import axios from 'axios'
 
 const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
@@ -66,11 +67,28 @@ export const Project = ({ user, setError }) => {
 
   // eslint-disable-next-line no-unused-vars
   const handlePoster = (e) => {
-    alert('HEY!')
-    setPoster('https://i.postimg.cc/DydzwSZW/Them.jpg')
+
+    e.preventDefault()
+
+    const formData = new FormData()
+    formData.append('file', e.target.files[0])
+    formData.append('upload_preset', 'xksqk2bc')
+
+    axios.post(
+      'https://api.cloudinary.com/v1_1/maulight/image/upload',
+      formData
+    )
+      .then((response) => {
+        console.log(response)
+        setPoster(response.data.secure_url)
+        handleSave(response.data.secure_url)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
-  const handleSave = () => {
+  const handleSave = (imageUrl) => {
 
     if (title === '' || logline === '' || summary === '') {
       setError('You didn\'t write anything!')
@@ -117,7 +135,7 @@ export const Project = ({ user, setError }) => {
       resolve
     }
 
-
+    let posterUrl = imageUrl || poster
 
     const project = {
       title,
@@ -131,7 +149,7 @@ export const Project = ({ user, setError }) => {
       opposition,
       screenplay,
       pitch,
-      poster,
+      poster: posterUrl,
       wallpaper
     }
 
@@ -199,6 +217,27 @@ export const Project = ({ user, setError }) => {
     )
   }, [])
 
+  const PosterFrame = ({ poster }) => {
+    return (
+      <div className="flex flex-col">
+
+
+        <div className={'lg:w-[25vw] h-[73vh] object-left group relative border-r border-[#464648] overflow-hidden'}>
+
+          <label>
+            <img src={poster} className={'w-full min-h-full object-cover'} />
+            <input
+              type="file"
+              name="upload-poster"
+              onChange={(e) => handlePoster(e)}
+              className="w-0 h-0 p-0 m-0"
+            />
+          </label>
+        </div>
+      </div>
+    )
+  }
+
   const LowerButtons = ({ handleSave, setPage }) => {
     return (
       <div className="flex justify-between w-full gap-x-10">
@@ -244,22 +283,8 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="w-full pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-                  <div className="flex flex-col">
 
-
-                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
-
-                      <label>
-                        <img src={poster} className={'w-full min-h-full object-cover'} />
-                        <input
-                          type="file"
-                          name="upload-poster"
-                          onChange={(e) => handlePoster(e)}
-                          className="w-0 h-0 p-0 m-0"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <PosterFrame poster={poster} />
 
                   <div className="flex flex-col min-h-full w-full justify-start items-start">
                     <div className="flex justify-end items-center w-full py-3">
@@ -311,22 +336,8 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="w-full pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-                  <div className="flex flex-col">
 
-
-                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
-
-                      <label>
-                        <img src={poster} className={'w-full min-h-full object-cover'} />
-                        <input
-                          type="file"
-                          name="upload-poster"
-                          onChange={(e) => handlePoster(e)}
-                          className="w-0 h-0 p-0 m-0"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <PosterFrame poster={poster} />
 
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
                     <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>The creation of a Myth_</h1>
@@ -378,22 +389,8 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="w-full pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-                  <div className="flex flex-col">
 
-
-                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
-
-                      <label>
-                        <img src={poster} className={'w-full min-h-full object-cover'} />
-                        <input
-                          type="file"
-                          name="upload-poster"
-                          onChange={(e) => handlePoster(e)}
-                          className="w-0 h-0 p-0 m-0"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <PosterFrame poster={poster} />
 
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
                     <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>The dramatic basis of Story_</h1>
@@ -472,22 +469,8 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="w-full pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-                  <div className="flex flex-col">
 
-
-                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
-
-                      <label>
-                        <img src={poster} className={'w-full min-h-full object-cover'} />
-                        <input
-                          type="file"
-                          name="upload-poster"
-                          onChange={(e) => handlePoster(e)}
-                          className="w-0 h-0 p-0 m-0"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <PosterFrame poster={poster} />
 
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
                     <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>{'The protagonist\'s Arc_'}</h1>
@@ -562,22 +545,8 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="w-full pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-                  <div className="flex flex-col">
 
-
-                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
-
-                      <label>
-                        <img src={poster} className={'w-full min-h-full object-cover'} />
-                        <input
-                          type="file"
-                          name="upload-poster"
-                          onChange={(e) => handlePoster(e)}
-                          className="w-0 h-0 p-0 m-0"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <PosterFrame poster={poster} />
 
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
                     <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>Objective & Opposition_</h1>
@@ -641,22 +610,8 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="w-full pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-                  <div className="flex flex-col">
 
-
-                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
-
-                      <label>
-                        <img src={poster} className={'w-full min-h-full object-cover'} />
-                        <input
-                          type="file"
-                          name="upload-poster"
-                          onChange={(e) => handlePoster(e)}
-                          className="w-0 h-0 p-0 m-0"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <PosterFrame poster={poster} />
 
                   <div className="flex flex-col w-full h-[74vh] justify-start items-start">
                     <div className="flex h-full">
@@ -668,7 +623,7 @@ export const Project = ({ user, setError }) => {
                       <iframe
                         className='h-full'
                         src={'https://drive.google.com/file/d/1TK_DnG7vnbrDx7J178_0jHNqZ8mTobKD/preview'}
-                        width="1050"
+                        width="950"
                         height="463"
                         allow="autoplay"
                       ></iframe>
@@ -701,22 +656,8 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="w-full pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-                  <div className="flex flex-col">
 
-
-                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
-
-                      <label>
-                        <img src={poster} className={'w-full min-h-full object-cover'} />
-                        <input
-                          type="file"
-                          name="upload-poster"
-                          onChange={(e) => handlePoster(e)}
-                          className="w-0 h-0 p-0 m-0"
-                        />
-                      </label>
-                    </div>
-                  </div>
+                  <PosterFrame poster={poster} />
 
                   <div className="flex flex-col w-full h-[74vh] justify-start items-start">
                     <div className="flex h-full">
