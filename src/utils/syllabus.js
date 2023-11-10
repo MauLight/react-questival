@@ -144,16 +144,24 @@ export const syllabusPage1 = [
     ]
   },
   {
-    id: 's19',
+    id: 'r19',
     pos: '19',
+    title: 'LESSON 16: Dialogue as action',
+    elements: [
+      'Death/Resurrection', 'Self-revelation', 'Fall into lie', 'Denouement'
+    ]
+  },
+  {
+    id: 's20',
+    pos: '20',
     title: 'Final test',
     elements: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     ]
   },
   {
-    id: 't20',
-    pos: '20',
+    id: 't21',
+    pos: '21',
     title: 'Final Pitch Session',
     elements: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'

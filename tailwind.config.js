@@ -16,7 +16,8 @@ module.exports = {
         stoke: 'Stoke',
         zen: 'Zen Antique',
         body: ['Sono', 'serif'],
-        title2: ['ZHOW', 'serif']
+        title2: ['ZHOW', 'serif'],
+        title: ['CHILLAX', 'serif']
       }
     },
     darkMode: 'class',

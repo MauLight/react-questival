@@ -10,14 +10,14 @@ export const Card = ({ id, title, lesson, img, body, tags }) => {
       variants={fadeInSmall('left', 0.2)}
       initial="hidden"
       whileInView={'show'}
-      viewport={{ once: false, amount: 0.7 }}
+      viewport={{ once: true, amount: 0.7 }}
       key={id}
-      className='lg:min-w-[35vw] h-full object-contain object-center overflow-hidden border-2 border-white bg-[#1b1b1b] hover:opacity-10 rounded-r-[15px] px-5 py-10 mx-5'
+      className='lg:min-w-[35vw] h-full object-contain object-center overflow-hidden border-x border-[#464648] bg-[#1b1b1b] hover:opacity-10 py-10'
       style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover' }}
     >
-      <h1 className='font-carbon text-lg mb-1 text-[#aaaaaa] uppercase'>{'// Lesson ' + lesson}</h1>
-      <h1 className='font-title2 text-[40px] mb-4 text-white'>{title}</h1>
-      <img className='md:h-[60%] lg:h-[40%] xl:h-[50%] w-full object-cover mx-auto rounded-md' src={img} />
+      <h1 className='font-body text-lg mb-1 text-[#aaaaaa] uppercase px-5'>{'// Lesson ' + lesson}</h1>
+      <h1 className='font-title2 text-[40px] py-2 border-t border-[#464648] text-white px-5 uppercase'>{title}</h1>
+      <img className='md:h-[60%] lg:h-[40%] xl:h-[50%] w-full object-cover mx-auto border-y border-[#464648]' src={img} />
       <div className="flex justify-center my-3">
         {
           tags.map((tag, i) => (
@@ -28,8 +28,8 @@ export const Card = ({ id, title, lesson, img, body, tags }) => {
           )
         }
       </div>
-      <div className="flex">
-        <p className='text-xl font-carbon text-white'>{body}</p>
+      <div className="flex px-5 border-t py-5 border-[#464648]">
+        <p className='text-xl font-body text-white'>{body}</p>
       </div>
     </motion.div>
   )

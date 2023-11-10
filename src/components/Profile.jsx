@@ -75,16 +75,15 @@ export const Profile = ({ setError, setToken }) => {
   }
 
   return (
-    <div className="shadow flex justify-center items-center object-cover flex-col gap-y-2 px-2 h-screen"
-      style={{ backgroundImage: 'url(\'https://i.postimg.cc/YjcVyQtz/bg-profile.png\')', backgroundSize: 'cover' }}
+    <div className="flex justify-center items-center object-cover flex-col h-screen bg-[#10100e] border-r border-[#464648]"
     >
-      <div className='flex flex-col my-10'>
-        <h1 className='text-2xl font-title2 text-white uppercase glow'>Questival</h1>
+      <div className='flex flex-col justify-center items-center w-full mt-10 border-t border-[#464648]'>
+        <h1 className='text-2xl font-title2 text-white uppercase glow py-5'>Questival</h1>
       </div>
 
       <div className='flex items-center w-full justify-center'>
-        <label>
-          <img className='h-[90px] w-[90px] object-cover rounded-full border-2 border-white cursor-pointer' src={cloudinaryAvatarImage ? cloudinaryAvatarImage : userInfo.pic} />
+        <label className='h-[296px]'>
+          <img className='w-full h-[296px] object-cover border-y border-[#464648] cursor-pointer' src={cloudinaryAvatarImage ? cloudinaryAvatarImage : userInfo.pic} />
           <input
             type="file"
             name="upload-avatar"
@@ -94,7 +93,7 @@ export const Profile = ({ setError, setToken }) => {
         </label>
       </div>
 
-      <div className="flex flex-col justify-start items-start gap-y-5 p-5 mt-10 rounded-[10px]">
+      <div className="flex flex-col justify-start items-start gap-y-4 px-5 py-12 w-full border-b border-[#464648]">
 
         <Link to={'/myproject'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
           <Schematics size={16} />
@@ -122,9 +121,9 @@ export const Profile = ({ setError, setToken }) => {
       <div className='flex justify-center items-center mt-auto mb-[53%]'>
         <motion.button
           onClick={handleLogOut}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-          className='font-carbon text-[10px] border-2 p-4 rounded-full w-[70px] h-[70px] bg-[#2c262d] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
+          className='font-carbon text-[12px] border border-[#464648] p-4 rounded-full w-[90px] h-[90px] bg-[#10100e] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
         >log-out</motion.button>
       </div>
     </div>

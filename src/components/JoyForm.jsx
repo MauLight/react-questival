@@ -65,7 +65,7 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
 
   return (
     <>
-      <div className="flex justify-center items-start flex-col gap-y-2 px-10 bg-site border-0 min-h-screen">
+      <div className="flex justify-center items-start flex-col gap-y-2 px-10 bg-[#10100e] border-0 min-h-screen">
         <div className='w-[300px] flex flex-col mb-2 mb-[40px]'>
           <h4 className='absolute font-body text-white left-[4%] text-[12px] text-left mb-0'>{'M.Light\'s'}</h4>
           <h1

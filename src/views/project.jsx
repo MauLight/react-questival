@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 
 const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
-const placeholder = 'https://placehold.co/600x400?text=POSTER'
+const placeholder = 'https://i.postimg.cc/DydzwSZW/Them.jpg'
 
 export const Project = ({ user, setError }) => {
 
@@ -67,6 +67,7 @@ export const Project = ({ user, setError }) => {
   // eslint-disable-next-line no-unused-vars
   const handlePoster = (e) => {
     alert('HEY!')
+    setPoster('https://i.postimg.cc/DydzwSZW/Them.jpg')
   }
 
   const handleSave = () => {
@@ -134,7 +135,7 @@ export const Project = ({ user, setError }) => {
       wallpaper
     }
 
-    if(currentUser) {
+    if (currentUser) {
       const id = currentUser.projects[0]._id
       projectsService.update(id, project).then(response => {
         console.log(response)
@@ -198,8 +199,33 @@ export const Project = ({ user, setError }) => {
     )
   }, [])
 
+  const LowerButtons = ({ handleSave, setPage }) => {
+    return (
+      <div className="flex justify-between w-full gap-x-10">
+        <motion.button
+          onClick={handleSave}
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+          className='font-body text-[12px] border border-[#464648] p-4 rounded-full w-[90px] h-[90px] bg-[#10100e] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body my-auto'
+        >Save</motion.button>
+        <div className="flex">
+          {
+            page > 1 && (
+              <ArrowLeft onClick={() => setPage(page - 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
+            )
+          }
+          {
+            page < 7 && (
+              <ArrowRight onClick={() => setPage(page + 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
+            )
+          }
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="w-screen flex flex-col h-screen bg-[#3b1950] text-white text-2xl font-body overflow-y-hidden">
+    <div className="w-screen flex flex-col h-screen bg-[#10100e] text-white text-2xl font-body overflow-hidden pt-5">
       <>
         {
           page === 1 && (
@@ -208,35 +234,26 @@ export const Project = ({ user, setError }) => {
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
-              <div className="mr-auto pl-[250px]">
+              className='flex flex-col justify-center items-center pt-5'>
+              <div className="mr-auto pl-[190px] border-t border-[#464648]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                  <div className="flex justify-between">
-                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
-                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
-                      <p className='font-body text-black text-sm'>{'DATE'}</p>
-
-                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
-
-                    </div>
-                  </div>
+                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                 </div>
 
               </div>
-              <div className="w-full pl-[250px]">
-                <div className="lg:flex gap-x-20">
+              <div className="w-full pl-[190px]">
+                <div className="lg:flex border-b border-[#464648]">
                   <div className="flex flex-col">
 
 
-                    <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
 
                       <label>
                         <img src={poster} className={'w-full min-h-full object-cover'} />
                         <input
                           type="file"
-                          name="upload-avatar"
+                          name="upload-poster"
                           onChange={(e) => handlePoster(e)}
                           className="w-0 h-0 p-0 m-0"
                         />
@@ -244,17 +261,28 @@ export const Project = ({ user, setError }) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
-                    <div className="flex flex-col">
+                  <div className="flex flex-col min-h-full w-full justify-start items-start">
+                    <div className="flex justify-end items-center w-full py-3">
+                      <div className="flex justify-end gap-x-2  px-20">
+                        <p className='font-body text-[#464648] text-sm'>{'DATE'}</p>
+
+                        <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col border-t border-[#464648]  px-20 w-full py-3">
                       <label htmlFor='summary'>Logline_</label>
                       <div className="flex gap-x-5 text-center items-center">
                         <Quotes className='hidden sm:flex text-black w-[150px] h-auto' size={28} />
                         <textarea placeholder={lorem} type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-4xl min-[1800px]:text-5xl w-[50vw]' value={logline} onChange={({ target }) => setLogline(target.value)} />
                       </div>
                     </div>
-                    <div className="flex flex-col gap-x-5 gap-y-5 text-center font-body w-full items-start">
+                    <div className="flex flex-col gap-x-5 gap-y-5 px-20 text-center font-body w-full items-start border-y border-[#464648]  py-3">
                       <label htmlFor='summary'>Summary_</label>
                       <textarea placeholder={lorem} id='summary' className='h-[23vh] font-body w-full text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={summary} onChange={({ target }) => setSummary(target.value)} />
+                    </div>
+
+                    <div className="px-20 w-full">
+                      <LowerButtons handleSave={handleSave} setPage={setPage} />
                     </div>
 
                   </div>
@@ -273,57 +301,54 @@ export const Project = ({ user, setError }) => {
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
-              <div className="mr-auto pl-[250px]">
+              className='flex flex-col justify-center items-center pt-5'>
+              <div className="mr-auto pl-[190px] border-t border-[#464648]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                  <div className="flex justify-between">
-                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
-                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
-                      <p className='font-body text-black text-sm'>{'DATE'}</p>
-
-                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
-
-                    </div>
-                  </div>
+                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                 </div>
 
               </div>
-              <div className="w-full pl-[250px]">
-                <div className="lg:flex gap-x-20">
-                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+              <div className="w-full pl-[190px]">
+                <div className="lg:flex border-b border-[#464648]">
+                  <div className="flex flex-col">
 
-                    <label>
-                      <img src={poster} className={'w-full min-h-full object-cover'} />
-                      <input
-                        type="file"
-                        name="upload-avatar"
-                        onChange={(e) => handlePoster(e)}
-                        className="w-0 h-0 p-0 m-0"
-                      />
-                    </label>
+
+                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
+
+                      <label>
+                        <img src={poster} className={'w-full min-h-full object-cover'} />
+                        <input
+                          type="file"
+                          name="upload-poster"
+                          onChange={(e) => handlePoster(e)}
+                          className="w-0 h-0 p-0 m-0"
+                        />
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
-                    <h1 className='font-body text-6xl text-white'>The creation of a Myth_</h1>
-                    <div className="flex flex-col">
+                  <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
+                    <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>The creation of a Myth_</h1>
+                    <div className="flex flex-col px-20 py-4">
                       <label htmlFor='summary'>Problem_</label>
                       <input placeholder={lorem} type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl w-[50vw]' value={problem} onChange={({ target }) => setProblem(target.value)} />
                     </div>
-                    <div className="flex flex-col gap-x-5 gap-y-5 text-center font-body w-full items-start">
+                    <div className="flex flex-col gap-x-5 gap-y-5 text-center font-body w-full items-start px-20">
                       <label htmlFor='summary'>Your Take_</label>
                       <textarea placeholder={lorem} id='summary' className='h-[7vh] font-body w-full text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={take} onChange={({ target }) => setTake(target.value)} />
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col px-20">
                       <label htmlFor='summary'>Concept_</label>
                       <input placeholder={lorem} type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl w-[50vw]' value={concept} onChange={({ target }) => setConcept(target.value)} />
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col px-20">
                       <label htmlFor='summary'>Myth_</label>
                       <input placeholder={lorem} type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl w-[50vw]' value={myth_u} onChange={({ target }) => setMyth_u(target.value)} />
                     </div>
-
+                    <div className="px-20 w-full border-t border-[#464648]">
+                      <LowerButtons handleSave={handleSave} setPage={setPage} />
+                    </div>
                   </div>
 
                 </div>
@@ -335,64 +360,62 @@ export const Project = ({ user, setError }) => {
       <>
         {
           page === 3 && (
+
+
+
             <motion.div
               variants={fadeInSmall('left', 0.2)}
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
-              <div className="mr-auto pl-[250px]">
+              className='flex flex-col justify-center items-center pt-5'>
+              <div className="mr-auto pl-[190px] border-t border-[#464648]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                  <div className="flex justify-between">
-                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
-                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
-                      <p className='font-body text-black text-sm'>{'DATE'}</p>
-
-                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
-
-                    </div>
-                  </div>
+                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                 </div>
 
               </div>
-              <div className="w-full pl-[250px]">
-                <div className="lg:flex gap-x-20">
-                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+              <div className="w-full pl-[190px]">
+                <div className="lg:flex border-b border-[#464648]">
+                  <div className="flex flex-col">
 
-                    <label>
-                      <img src={poster} className={'w-full min-h-full object-cover'} />
-                      <input
-                        type="file"
-                        name="upload-avatar"
-                        onChange={(e) => handlePoster(e)}
-                        className="w-0 h-0 p-0 m-0"
-                      />
-                    </label>
+
+                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
+
+                      <label>
+                        <img src={poster} className={'w-full min-h-full object-cover'} />
+                        <input
+                          type="file"
+                          name="upload-poster"
+                          onChange={(e) => handlePoster(e)}
+                          className="w-0 h-0 p-0 m-0"
+                        />
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
-                    <h1 className='font-body text-6xl text-white'>The dramatic basis of Story_</h1>
-                    <div className="flex flex-col">
+                  <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
+                    <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>The dramatic basis of Story_</h1>
+                    <div className="flex flex-col px-20 py-7">
                       <label htmlFor='theme'>Theme_</label>
                       <input placeholder={lorem} id='theme' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={theme} onChange={({ target }) => setTheme(target.value)} />
                     </div>
                     <div className="flex gap-x-20">
                       <div className="flex flex-col">
-                        <div className="flex flex-col">
+                        <div className="flex flex-col px-20">
                           <label htmlFor='truth'>Truth_</label>
                           <input placeholder={lorem} id='truth' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={truth} onChange={({ target }) => setTruth(target.value)} />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col px-20">
                           <label htmlFor='contrapositive'>Contrapositive_</label>
                           <input placeholder={lorem} id='contrapositive' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={contrapositive} onChange={({ target }) => setContrapositive(target.value)} />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col px-20">
                           <label htmlFor='lie'>Lie_</label>
                           <input placeholder={lorem} id='lie' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={lie} onChange={({ target }) => setLie(target.value)} />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col px-20">
                           <label htmlFor='flaw'>Flaw_</label>
                           <input placeholder={lorem} id='flaw' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={flaw} onChange={({ target }) => setFlaw(target.value)} />
                         </div>
@@ -415,8 +438,12 @@ export const Project = ({ user, setError }) => {
                           <input placeholder={lorem} id='need' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={need} onChange={({ target }) => setNeed(target.value)} />
                         </div>
                       </div>
-                    </div>
 
+
+                    </div>
+                    <div className="px-20 w-full border-t border-[#464648]">
+                      <LowerButtons handleSave={handleSave} setPage={setPage} />
+                    </div>
                   </div>
 
                 </div>
@@ -428,48 +455,45 @@ export const Project = ({ user, setError }) => {
       <>
         {
           page === 4 && (
+
+
             <motion.div
               variants={fadeInSmall('left', 0.2)}
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
-              <div className="mr-auto pl-[250px]">
+              className='flex flex-col justify-center items-center pt-5'>
+              <div className="mr-auto pl-[190px] border-t border-[#464648]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                  <div className="flex justify-between">
-                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
-                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
-                      <p className='font-body text-black text-sm'>{'DATE'}</p>
-
-                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
-
-                    </div>
-                  </div>
+                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                 </div>
 
               </div>
-              <div className="w-full pl-[250px]">
-                <div className="lg:flex gap-x-20">
-                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+              <div className="w-full pl-[190px]">
+                <div className="lg:flex border-b border-[#464648]">
+                  <div className="flex flex-col">
 
-                    <label>
-                      <img src={protagonist_u || 'https://placehold.co/600x400?text=Protagonist'} className={'w-full min-h-full object-cover'} />
-                      <input
-                        type="file"
-                        name="upload-avatar"
-                        onChange={(e) => handlePoster(e)}
-                        className="w-0 h-0 p-0 m-0"
-                      />
-                    </label>
+
+                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
+
+                      <label>
+                        <img src={poster} className={'w-full min-h-full object-cover'} />
+                        <input
+                          type="file"
+                          name="upload-poster"
+                          onChange={(e) => handlePoster(e)}
+                          className="w-0 h-0 p-0 m-0"
+                        />
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
-                    <h1 className='font-body text-6xl text-white'>{'The protagonist\'s Arc_'}</h1>
-                    <div className="flex flex-col gap-y-5">
-                      <div className="flex gap-x-10">
-                        <div className="flex flex-col gap-y-2">
+                  <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
+                    <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>{'The protagonist\'s Arc_'}</h1>
+                    <div className="flex flex-col gap-y-5 py-7">
+                      <div className="flex gap-x-5 py-3">
+                        <div className="flex flex-col gap-y-2 pl-20">
                           <label htmlFor='belief'>Character Logline_</label>
                           <textarea placeholder={lorem} id='belief' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl w-[28vw]' value={chLogline} onChange={({ target }) => setChLogline(target.value)} />
                           <div className="flex flex-col">
@@ -505,9 +529,14 @@ export const Project = ({ user, setError }) => {
                         </div>
                       </div>
                     </div>
+                    <div className="px-20 w-full border-t border-[#464648]">
+                      <LowerButtons handleSave={handleSave} setPage={setPage} />
+                    </div>
                   </div>
 
+
                 </div>
+
               </div>
             </motion.div>
           )
@@ -516,50 +545,47 @@ export const Project = ({ user, setError }) => {
       <>
         {
           page === 5 && (
+
+
             <motion.div
               variants={fadeInSmall('left', 0.2)}
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
-              <div className="mr-auto pl-[250px]">
+              className='flex flex-col justify-center items-center pt-5'>
+              <div className="mr-auto pl-[190px] border-t border-[#464648]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                  <div className="flex justify-between">
-                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
-                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
-                      <p className='font-body text-black text-sm'>{'DATE'}</p>
-
-                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
-
-                    </div>
-                  </div>
+                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                 </div>
 
               </div>
-              <div className="w-full pl-[250px]">
-                <div className="lg:flex gap-x-20">
-                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+              <div className="w-full pl-[190px]">
+                <div className="lg:flex border-b border-[#464648]">
+                  <div className="flex flex-col">
 
-                    <label>
-                      <img src={poster} className={'w-full min-h-full object-cover'} />
-                      <input
-                        type="file"
-                        name="upload-avatar"
-                        onChange={(e) => handlePoster(e)}
-                        className="w-0 h-0 p-0 m-0"
-                      />
-                    </label>
+
+                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
+
+                      <label>
+                        <img src={poster} className={'w-full min-h-full object-cover'} />
+                        <input
+                          type="file"
+                          name="upload-poster"
+                          onChange={(e) => handlePoster(e)}
+                          className="w-0 h-0 p-0 m-0"
+                        />
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
-                    <h1 className='font-body text-6xl text-white'>Objective & Opposition_</h1>
-                    <div className="flex flex-col">
+                  <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
+                    <h1 className='font-body w-full text-6xl text-white py-5 border-b border-[#464648] px-20'>Objective & Opposition_</h1>
+                    <div className="flex flex-col px-20 py-11">
                       <label htmlFor='objective'>Objective_</label>
                       <input placeholder={lorem} id='objective' type='text' className='font-body text-[#aaaaaa] w-[35vw] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl' value={objective} onChange={({ target }) => setObjective(target.value)} />
                     </div>
-                    <div className="flex flex-col gap-y-5 ">
+                    <div className="flex flex-col px-20 gap-y-5 ">
                       <div className="flex gap-x-10">
                         <div className="flex flex-col">
                           <label htmlFor='antagonismA'>Antagonism by Antagonist_</label>
@@ -585,9 +611,10 @@ export const Project = ({ user, setError }) => {
                         <input placeholder={lorem} id='resolve' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl sm:text-2xl min-[1800px]:text-3xl  w-[28vw]' value={resolve} onChange={({ target }) => setResolve(target.value)} />
                       </div>
                     </div>
-
+                    <div className="px-20 w-full border-t border-[#464648]">
+                      <LowerButtons handleSave={handleSave} setPage={setPage} />
+                    </div>
                   </div>
-
                 </div>
               </div>
             </motion.div>
@@ -597,57 +624,59 @@ export const Project = ({ user, setError }) => {
       <>
         {
           page === 6 && (
+
+
             <motion.div
               variants={fadeInSmall('left', 0.2)}
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
-              <div className="mr-auto pl-[250px]">
+              className='flex flex-col justify-center items-center pt-5'>
+              <div className="mr-auto pl-[190px] border-t border-[#464648]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                  <div className="flex justify-between">
-                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
-                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
-                      <p className='font-body text-black text-sm'>{'DATE'}</p>
-
-                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
-
-                    </div>
-                  </div>
+                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                 </div>
 
               </div>
-              <div className="w-full pl-[250px]">
-                <div className="lg:flex gap-x-20">
-                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+              <div className="w-full pl-[190px]">
+                <div className="lg:flex border-b border-[#464648]">
+                  <div className="flex flex-col">
 
-                    <label>
-                      <img src={poster} className={'w-full min-h-full object-cover'} />
-                      <input
-                        type="file"
-                        name="upload-avatar"
-                        onChange={(e) => handlePoster(e)}
-                        className="w-0 h-0 p-0 m-0"
-                      />
-                    </label>
+
+                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
+
+                      <label>
+                        <img src={poster} className={'w-full min-h-full object-cover'} />
+                        <input
+                          type="file"
+                          name="upload-poster"
+                          onChange={(e) => handlePoster(e)}
+                          className="w-0 h-0 p-0 m-0"
+                        />
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
-
-                    <div className="flex">
+                  <div className="flex flex-col w-full h-[74vh] justify-start items-start">
+                    <div className="flex h-full">
                       <iframe
-                        className='rounded-[10px] h-[49.7vh]'
+                        className='h-full  border-r border-[#464648]'
                         src={'https://drive.google.com/file/d/1TK_DnG7vnbrDx7J178_0jHNqZ8mTobKD/preview'}
-                        width="1080"
-                        height="443"
+                        allow="autoplay"
+                      ></iframe>
+                      <iframe
+                        className='h-full'
+                        src={'https://drive.google.com/file/d/1TK_DnG7vnbrDx7J178_0jHNqZ8mTobKD/preview'}
+                        width="1050"
+                        height="463"
                         allow="autoplay"
                       ></iframe>
                     </div>
-
+                    <div className="px-20 w-full border-t border-[#464648]">
+                      <LowerButtons handleSave={handleSave} setPage={setPage} />
+                    </div>
                   </div>
-
                 </div>
               </div>
             </motion.div>
@@ -662,78 +691,59 @@ export const Project = ({ user, setError }) => {
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-6 gap-y-20'>
-              <div className="mr-auto pl-[250px]">
+              className='flex flex-col justify-center items-center pt-5'>
+              <div className="mr-auto pl-[190px] border-t border-[#464648]">
 
                 <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full sm:text-[108px] bg-transparent' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                  <div className="flex justify-between">
-                    <div className="flex w-[80%] border-b-4 border-transparent mb-[7px]"></div>
-                    <div className="hidden xl:flex justify-end items-end gap-x-2 pr-[7%]">
-                      <p className='font-body text-black text-sm'>{'DATE'}</p>
-
-                      <p className='font-body text-white bg-gradient-to-r from-primary to-danger text-sm rounded-full px-2'>{'GENRE'}</p>
-
-                    </div>
-                  </div>
+                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
                 </div>
 
               </div>
-              <div className="w-full pl-[250px]">
-                <div className="lg:flex gap-x-20">
-                  <div className={'lg:w-[20vw] lg:h-[50vh] object-left rounded-[10px] group relative overflow-hidden'}>
+              <div className="w-full pl-[190px]">
+                <div className="lg:flex border-b border-[#464648]">
+                  <div className="flex flex-col">
 
-                    <label>
-                      <img src={poster} className={'w-full min-h-full object-cover'} />
-                      <input
-                        type="file"
-                        name="upload-avatar"
-                        onChange={(e) => handlePoster(e)}
-                        className="w-0 h-0 p-0 m-0"
-                      />
-                    </label>
+
+                    <div className={'lg:w-[25vw] h-full object-left group relative border-r border-[#464648] overflow-hidden'}>
+
+                      <label>
+                        <img src={poster} className={'w-full min-h-full object-cover'} />
+                        <input
+                          type="file"
+                          name="upload-poster"
+                          onChange={(e) => handlePoster(e)}
+                          className="w-0 h-0 p-0 m-0"
+                        />
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col min-h-full justify-start items-start gap-y-5">
-
-                    <div className="flex">
+                  <div className="flex flex-col w-full h-[74vh] justify-start items-start">
+                    <div className="flex h-full">
                       <iframe
-                        className='rounded-[10px] h-[49.7vh]'
+                        className='border-r border-[#464648]'
                         src={'https://drive.google.com/file/d/1cFp5STS1cYfrtmnsgodWNES0gQMG91cH/preview'}
-                        width="1080"
-                        height="443"
+                        allow="autoplay"
+                      ></iframe>
+                      <iframe
+                        className='h-full'
+                        src={'https://drive.google.com/file/d/1cFp5STS1cYfrtmnsgodWNES0gQMG91cH/preview'}
+                        width="948"
+                        height="463"
                         allow="autoplay"
                       ></iframe>
                     </div>
-
+                    <div className="px-20 w-full border-t border-[#464648]">
+                      <LowerButtons handleSave={handleSave} setPage={setPage} />
+                    </div>
                   </div>
-
                 </div>
               </div>
             </motion.div>
           )
         }
       </>
-      <div className="flex justify-between gap-x-10 ml-[21%] pr-20">
-        <motion.button
-          onClick={handleSave}
-          whileHover={{ scale: 1.1 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-          className='font-carbon text-[10px] border-2 p-4 mt-11 rounded-full w-[70px] h-[70px] bg-[#2c262d] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
-        >Save</motion.button>
-        <div className="flex">
-          {
-            page > 1 && (
-              <ArrowLeft onClick={() => setPage(page - 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
-            )
-          }
-          {
-            page < 7 && (
-              <ArrowRight onClick={() => setPage(page + 1)} className='hidden sm:flex text-black w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' size={28} />
-            )
-          }
-        </div>
-      </div>
+
     </div>
   )
 }

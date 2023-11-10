@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useApolloClient, useQuery, useSubscription } from '@apollo/client'
 import { ALL_POSTS, ALL_USERS, POST_ADDED, USER_ADDED } from './queries/queries'
+import { getAll } from './services/lessons'
 import Notification from './components/Notification'
 import { JoyForm } from './components/JoyForm'
 import { Banner } from './components/Banner'
@@ -14,6 +15,7 @@ import { Blog } from './views/blog'
 import { BlogPost } from './views/blogPost'
 
 import projectsService from './services/projects'
+import { Lesson } from './views/lesson'
 
 export const App = () => {
 
@@ -22,8 +24,12 @@ export const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [type, setType] = useState(null)
 
+  const [lessons, setLessons] = useState(null)
+
   const matchBlog = useMatch('/blogpost/:id')
   const blogId = matchBlog ? matchBlog.params.id : null
+  const matchLesson = useMatch('/lessons/:id')
+  const lessonId = matchLesson ? matchLesson.params.id : null
 
   const resultPosts = useQuery(ALL_POSTS)
 
@@ -69,6 +75,14 @@ export const App = () => {
     }
   }, [])
 
+  useEffect(() => {
+    getAll()
+      .then(response => {
+        console.log('Fetching lessons fulfilled!')
+        setLessons(response)
+      })
+  }, [])
+
   if (resultPosts.loading) {
     return (
       <div className='flex justify-center items-center h-[700px] w-full'>
@@ -94,7 +108,7 @@ export const App = () => {
   }
 
   return (
-    <div id='joybook' className={'min-[1200px]:flex relative bg-[#3b1950] h-screen'}>
+    <div id='joybook' className={'min-[1200px]:flex relative bg-[#10100e] h-screen'}>
       <div className="absolute top-[10%] left-[45%] z-40">
         <Notification errorMessage={errorMessage} type={type} />
       </div>
@@ -105,13 +119,14 @@ export const App = () => {
               <div className="w-[10%] fixed bg-[#3b1950] z-10">
                 <Profile setType={setType} setToken={setToken} setError={setErrorMessage} />
               </div>
-              <div className="w-[90%]">
+              <div className="">
                 <Routes>
-                  <Route path="/" element={<Feed data={posts} setError={setErrorMessage} />} />
+                  <Route path="/" element={<Feed lessons={lessons} setError={setErrorMessage} />} />
                   <Route path="/syllabus" element={<Syllabus />} />
                   <Route path="/myproject" element={<Project user={user} setError={setErrorMessage} />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blogpost/:id" element={<BlogPost blogId={blogId} />} />
+                  <Route path="/lessons/:id" element={<Lesson lessonId={lessonId} lessons={lessons} />} />
                 </Routes>
               </div>
             </div>

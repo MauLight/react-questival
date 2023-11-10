@@ -1,42 +1,29 @@
 import React from 'react'
 import { Card } from './Card'
-// import { posts } from '../utils/posts'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { getAll } from '../services/lessons'
+import { Link } from 'react-router-dom'
 
-export const Feed = ({ setError }) => {
-
-  const [lessons, setLessons] = useState(null)
-
-  useEffect(() => {
-    getAll()
-      .then(response => {
-        console.log('promise fulfilled!')
-        // console.log(response)
-        setLessons(response)
-      })
-  }, [])
+export const Feed = ({ lessons, setError }) => {
 
   return (
     <div
-      className="joy hidden min-[1200px]:flex items-center pl-[340px] gap-x-5 overflow-x-scroll scrollbar-none py-10 h-screen bg-[#3b1950] w-screen"
+      className="joy hidden min-[1200px]:flex items-center pl-[190px] overflow-x-scroll scrollbar-none py-10 h-screen bg-[#10100e] w-screen"
     >
-      {
-        lessons && lessons.map(post => <Card
-          key={post.id}
-          id={post.id}
-          lesson={post.lesson}
-          title={post.title}
-          author={post.author.username}
-          img={post.img}
-          body={post.body}
-          likes={post.likes}
-          tags={post.tags}
-          lorem={post.lorem}
-          setError={setError}
-        />)
-      }
+      <div className="flex border-y border-[#464648] h-full">
+        {
+          lessons && lessons.map(post => <Link key={post.id} to={`/lessons/${post.id}`} >
+            <Card
+              id={post.id}
+              lesson={post.lesson}
+              title={post.title}
+              img={post.img}
+              body={post.body}
+              tags={post.tags}
+              setError={setError}
+            />
+          </Link>
+          )
+        }
+      </div>
     </div>
   )
 }

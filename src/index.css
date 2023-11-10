@@ -11,6 +11,10 @@
   font-family: "ZHOW";
   src: url("./fonts/uncharted.otf");
 }
+@font-face {
+  font-family: "CHILLAX";
+  src: url("./fonts/Chillax.otf");
+}
 
 .glow {
   text-shadow: 0 0 1px #ffffff, 0 0 10px #ffffff, 0 0 21px #ffffff, 0 0 42px #292928,
