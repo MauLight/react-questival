@@ -219,10 +219,10 @@ export const Project = ({ user, setError }) => {
 
   const PosterFrame = ({ poster }) => {
     return (
-      <div className={'lg:w-[25vw] w-screen min-h-screen group relative lg:border-r border-[#464648] overflow-hidden'}>
+      <div className={'lg:w-[25vw] min-h-screen group relative lg:border-r border-[#464648] overflow-hidden'}>
 
         <label>
-          <img src={poster} className={'w-screen h-full min-h-screen object-cover object-top'} />
+          <img src={poster} className={'w-full h-full min-h-screen object-cover object-top'} />
           <input
             type="file"
             name="upload-poster"
@@ -296,16 +296,14 @@ export const Project = ({ user, setError }) => {
               className='flex flex-col justify-center max-lg:min-h-screen items-center pt-5 max-lg:overflow-y-scroll'>
               <Title title={title} setTitle={setTitle} />
               <div className="poster w-full lg:pl-[190px]">
-                <div className="flex  w-screen border-b border-[#464648]">
-                  <div className="hidden lg:flex">
+                <div className="lg:flex border-b border-[#464648]">
+
+                  <div className="w-screen lg:w-1/4">
                     <PosterFrame poster={poster} />
                   </div>
 
                   <div className="flex flex-col min-h-full w-full justify-start items-start">
                     <Date />
-                    <div className="lg:hidden">
-                      <PosterFrame poster={poster} />
-                    </div>
                     <div className="flex flex-col border-t border-[#464648] max-lg:justify-center max-lg:items-start px-2 lg:px-20 w-full py-2">
                       <label htmlFor='summary'>Logline_</label>
                       <div className="flex gap-x-5 text-center items-center h-[14vh] overflow-hidden">
@@ -343,8 +341,9 @@ export const Project = ({ user, setError }) => {
               <div className="poster w-full lg:pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
 
-                  <PosterFrame poster={poster} />
-
+                  <div className="w-screen lg:w-1/4">
+                    <PosterFrame poster={poster} />
+                  </div>
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-3">
                     <h1 className='font-body w-full text-4xl text-white py-5 border-b border-[#464648] px-2 lg:px-20'>The creation of a Myth_</h1>
                     <div className="flex flex-col px-2 lg:px-20 py-4">
@@ -391,7 +390,11 @@ export const Project = ({ user, setError }) => {
               <div className="poster w-full lg:pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
 
-                  <PosterFrame poster={poster} />
+
+                  <div className="w-screen lg:w-1/4">
+                    <PosterFrame poster={poster} />
+                  </div>
+
 
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-3">
                     <h1 className='font-body w-full text-4xl text-white py-5 border-b border-[#464648] px-2 lg:px-20'>The dramatic basis of Story_</h1>
@@ -468,8 +471,9 @@ export const Project = ({ user, setError }) => {
               </div>
               <div className="poster w-full lg:pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
-
-                  <PosterFrame poster={poster} />
+                  <div className="w-screen lg:w-1/4">
+                    <PosterFrame poster={poster} />
+                  </div>
 
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
                     <h1 className='font-body w-full text-4xl text-white py-5 border-b border-[#464648] px-2 lg:px-20'>{'The protagonist\'s Arc_'}</h1>
@@ -542,11 +546,13 @@ export const Project = ({ user, setError }) => {
               <div className="poster w-full lg:pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
 
-                  <PosterFrame poster={poster} />
+                  <div className="w-screen lg:w-1/4">
+                    <PosterFrame poster={poster} />
+                  </div>
 
                   <div className="flex flex-col w-full min-h-full justify-start items-start gap-y-5">
                     <h1 className='font-body w-full text-4xl text-white py-5 border-b border-[#464648] px-2 lg:px-20'>Objective & Opposition_</h1>
-                    <div className="flex flex-col px-2 lg:px-20 py-11">
+                    <div className="flex flex-col px-2 lg:px-20 py-2">
                       <label htmlFor='objective'>Objective_</label>
                       <input placeholder={lorem} id='objective' type='text' className='font-body text-[#aaaaaa] w-full sm:w-[35vw] bg-transparent text-xl min-[1800px]:text-2xl min-[1800px]:text-3xl' value={objective} onChange={({ target }) => setObjective(target.value)} />
                     </div>
@@ -576,7 +582,7 @@ export const Project = ({ user, setError }) => {
                         <input placeholder={lorem} id='resolve' type='text' className='font-body text-[#aaaaaa] bg-transparent text-xl min-[1800px]:text-2xl min-[1800px]:text-3xl w-full sm:w-[28vw]' value={resolve} onChange={({ target }) => setResolve(target.value)} />
                       </div>
                     </div>
-                    <div className="px-20 w-full border-t border-[#464648]">
+                    <div className="px-2 sm:px-20 w-full border-t border-[#464648]">
                       <LowerButtons handleSave={handleSave} setPage={setPage} />
                     </div>
                   </div>
@@ -596,35 +602,36 @@ export const Project = ({ user, setError }) => {
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-5'>
-              <div className="mr-auto pl-[190px] border-t border-[#464648]">
+              className='flex flex-col justify-center max-lg:min-h-screen items-center pt-5 max-lg:overflow-y-scroll'>
+              <div className="lg:pl-[190px] border-t border-[#464648]">
 
-                <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                </div>
+                <Title title={title} setTitle={setTitle} />
 
               </div>
-              <div className="w-full pl-[190px]">
+              <div className="poster w-full lg:pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
+                  <div className="hidden min-[1800px]:flex w-1/4">
+                    <div className="w-1/4">
+                      <PosterFrame poster={poster} />
+                    </div>
+                  </div>
 
-                  <PosterFrame poster={poster} />
-
-                  <div className="flex flex-col w-full h-[74vh] justify-start items-start">
+                  <div className="flex flex-col w-3/4 h-screen lg:h-[74vh] justify-start items-start">
                     <div className="flex h-full">
                       <iframe
-                        className='h-full  border-r border-[#464648]'
+                        className='hidden min-[1800px]:flex border-r border-[#464648]'
                         src={'https://drive.google.com/file/d/1TK_DnG7vnbrDx7J178_0jHNqZ8mTobKD/preview'}
                         allow="autoplay"
                       ></iframe>
                       <iframe
-                        className='h-full'
+                        className='h-full max-[1800px]:w-screen'
                         src={'https://drive.google.com/file/d/1TK_DnG7vnbrDx7J178_0jHNqZ8mTobKD/preview'}
                         width="950"
                         height="463"
                         allow="autoplay"
                       ></iframe>
                     </div>
-                    <div className="px-20 w-full border-t border-[#464648]">
+                    <div className="px-2 sm:px-20 w-screen border-t border-[#464648]">
                       <LowerButtons handleSave={handleSave} setPage={setPage} />
                     </div>
                   </div>
@@ -642,35 +649,36 @@ export const Project = ({ user, setError }) => {
               initial="hidden"
               whileInView={'show'}
               viewport={{ once: false, amount: 0.7 }}
-              className='flex flex-col justify-center items-center pt-5'>
-              <div className="mr-auto pl-[190px] border-t border-[#464648]">
+              className='flex flex-col justify-center max-lg:min-h-screen items-center pt-5 max-lg:overflow-y-scroll'>
+              <div className="lg:pl-[190px] border-t border-[#464648]">
 
-                <div className="flex flex-col justify-center">
-                  <input className='font-title2 text-5xl w-full border-b border-[#464648] py-2 pl-[3%] sm:text-[108px] bg-transparent' placeholder='Title' type='text' value={title} onChange={({ target }) => setTitle(target.value)} />
-                </div>
+                <Title title={title} setTitle={setTitle} />
 
               </div>
-              <div className="w-full pl-[190px]">
+              <div className="poster w-full lg:pl-[190px]">
                 <div className="lg:flex border-b border-[#464648]">
+                  <div className="hidden min-[1800px]:flex w-1/4">
+                    <div className="w-1/4">
+                      <PosterFrame poster={poster} />
+                    </div>
+                  </div>
 
-                  <PosterFrame poster={poster} />
-
-                  <div className="flex flex-col w-full h-[74vh] justify-start items-start">
+                  <div className="flex flex-col w-full h-screen lg:h-[74vh] justify-start items-start">
                     <div className="flex h-full">
                       <iframe
-                        className='border-r border-[#464648]'
+                        className='hidden min-[1800px]:flex border-r border-[#464648]'
                         src={'https://drive.google.com/file/d/1cFp5STS1cYfrtmnsgodWNES0gQMG91cH/preview'}
                         allow="autoplay"
                       ></iframe>
                       <iframe
-                        className='h-full'
+                        className='h-full max-[1800px]:w-screen'
                         src={'https://drive.google.com/file/d/1cFp5STS1cYfrtmnsgodWNES0gQMG91cH/preview'}
-                        width="948"
+                        width="950"
                         height="463"
                         allow="autoplay"
                       ></iframe>
                     </div>
-                    <div className="px-20 w-full border-t border-[#464648]">
+                    <div className="px-2 sm:px-20 w-screen border-t border-[#464648]">
                       <LowerButtons handleSave={handleSave} setPage={setPage} />
                     </div>
                   </div>
