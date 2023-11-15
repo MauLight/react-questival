@@ -31,27 +31,27 @@ export const Syllabus = () => {
       setCurrentPage(firstPage)
       setTitle('Month I')
     }
-    else if (currentPage[currentPage.length - 1].pos === '20') {
+    else if (currentPage[currentPage.length - 1].pos === '21') {
       setCurrentPage(secondPage)
       setTitle('Month II')
     }
   }
 
   return (
-    <div className="w-screen flex flex-col h-screen bg-[#2c262d] text-white text-2xl font-body overflow-y-hidden">
+    <div className="w-screen lg:pl-[188px] flex flex-col h-screen bg-[#10100e] font-body overflow-y-hidden">
       <motion.div
         variants={fadeInSmall('left', 0.2)}
         initial="hidden"
         whileInView={'show'}
         viewport={{ once: false, amount: 0.7 }}>
-        <h1 className='text-8xl font-title2 mb-32 mt-20 text-center'>{title}</h1>
-        <div className="flex justify-center h-[50vh] items-start overflow-y-scroll">
-          <div className="w-1/2">
+        <h1 className='text-5xl sm:text-8xl font-title2 uppercase text-white mb-10 mt-10 w-full pt-12 px-10 text-right'>{title}</h1>
+        <div className="flex justify-center h-[50.4vh] items-start overflow-y-scroll">
+          <div className="w-full">
             {
               currentPage.map(lesson => (
                 <Accordion key={lesson.id} variant="splitted">
-                  <AccordionItem key={lesson.pos} aria-label="Accordion 1" title={lesson.title}>
-                    <ul className='text-lg mb-10'>
+                  <AccordionItem key={lesson.pos} aria-label="Accordion 1" className='font-body text-xl sm:text-2xl text-[#aaaaaa] hover:text-white transition-color duration-200 border-t border-[#464648]' title={lesson.title}>
+                    <ul className='text-lg sm:text-xl mb-10'>
                       {
                         lesson.elements.map(item => (
                           <div key={item} className='flex items-center gap-x-2 px-5'>
@@ -67,12 +67,12 @@ export const Syllabus = () => {
             }
           </div>
         </div>
-        <div className="flex justify-center items-end gap-x-5 mt-10">
-          <button onClick={handlePageDown} className="flex justify-center items-center mt-10">
-            <ArrowLeft size={32} />
+        <div className="flex justify-end pr-10 items-center w-full pl-20 gap-x-5 pt-8 border-t border-[#464648]">
+          <button onClick={handlePageDown}>
+            <ArrowLeft size={32} className='flex text-black w-[100px] sm:w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' />
           </button>
-          <button onClick={handlePageUp} className="flex justify-center items-center mt-10">
-            <ArrowRight size={32} />
+          <button onClick={handlePageUp} >
+            <ArrowRight size={32} className='flex text-black w-[100px] sm:w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' />
           </button>
         </div>
       </motion.div>

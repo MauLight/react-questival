@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/lessons'
+const baseUrl = 'https://questivalapp-backend.onrender.com/api/lessons'
 
 export const getAll = async () => {
   const response = await axios.get(baseUrl)

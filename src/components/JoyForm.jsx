@@ -65,13 +65,12 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
 
   return (
     <>
-      <div className="flex justify-center items-start flex-col gap-y-2 px-10 bg-[#10100e] border-0 min-h-screen">
-        <div className='w-[300px] flex flex-col mb-2 mb-[40px]'>
-          <h4 className='absolute font-body text-white left-[4%] text-[12px] text-left mb-0'>{'M.Light\'s'}</h4>
+      <div className="flex justify-center items-start max-md:items-center flex-col gap-y-2 px-10 bg-[#10100e] border-0 min-h-screen scrollbar-none">
+        <div className='w-[300px] max-md:w-full flex flex-col mb-2 mb-[40px]'>
           <h1
-            className='text-[58px] font-title2 text-white mt-0 text-center uppercase glow mt-2'>Questival</h1>
+            className='text-4xl sm:text-[58px] font-title2 text-white mt-0 text-center uppercase glow mt-2'>Questival</h1>
         </div>
-        <div className='w-[300px]'>
+        <div className='max-w-[300px]'>
           <label className='font-body text-[13px] text-white' htmlFor='email'>Email:</label>
           <input
             id='email'
@@ -81,7 +80,7 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
             onChange={({ target }) => setEmail(target.value)}
           />
         </div>
-        <div className='w-[300px]'>
+        <div className='max-w-[300px]'>
           <label className='font-body text-[13px] text-white' htmlFor='username'>Password:</label>
           <input
             id='password'
@@ -92,14 +91,14 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
           />
         </div>
         <div className="flex justify-start">
-          <small className='text-carbon font-body text-white w-[280px]'>{'By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy.'}</small>
+          <small className='text-carbon font-body text-white max-w-[280px]'>{'By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy.'}</small>
         </div>
         <div className='flex justify-center items-center mt-5 w-full'>
           <motion.button
             onClick={handleLogin}
             whileHover={{ scale: 1.1 }}
             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            className='font-carbon text-[10px] border-2 p-4 rounded-full w-[70px] h-[70px] bg-[#2c262d] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
+            className='font-carbon text-[10px] border-2 p-4 rounded-full w-[70px] h-[70px] bg-[#2c262d] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#10100e] active:text-white font-body'
           >login</motion.button>
         </div>
       </div>

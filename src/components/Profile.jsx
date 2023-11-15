@@ -31,13 +31,13 @@ export const Profile = ({ setError, setToken }) => {
   if (loading) {
 
     return (
-      <div className='flex justify-center items-center h-[700px] w-full'>
-        <div className="flex justify-center items-center h-[700px] w-screen">
+      <div className='flex justify-center items-center h-screen w-full'>
 
-          <InfinitySpin
-            color="white"
-          />
-        </div>
+
+        <InfinitySpin
+          color="white"
+        />
+
       </div>
     )
   }
@@ -72,10 +72,11 @@ export const Profile = ({ setError, setToken }) => {
     setToken(null)
     localStorage.clear()
     client.resetStore()
+    window.location.href = 'https://screenwriters.quest/'
   }
 
   return (
-    <div className="flex justify-center items-center object-cover flex-col h-screen bg-[#10100e] border-r border-[#464648]"
+    <div className="flex justify-center items-center object-cover flex-col min-w-[190px] h-screen bg-[#10100e] border-r border-[#464648]"
     >
       <div className='flex flex-col justify-center items-center w-full mt-10 border-t border-[#464648]'>
         <h1 className='text-2xl font-title2 text-white uppercase glow py-5'>Questival</h1>
@@ -123,7 +124,7 @@ export const Profile = ({ setError, setToken }) => {
           onClick={handleLogOut}
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-          className='font-carbon text-[12px] border border-[#464648] p-4 rounded-full w-[90px] h-[90px] bg-[#10100e] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#9f56f4] active:text-white font-body'
+          className='font-carbon text-[12px] border border-[#464648] p-4 rounded-full w-[90px] h-[90px] bg-[#10100e] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#10100e] active:text-white font-body'
         >log-out</motion.button>
       </div>
     </div>

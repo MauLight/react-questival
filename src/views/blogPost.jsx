@@ -8,22 +8,22 @@ export const BlogPost = ({ blogId }) => {
 
   return (
     <>
-      <div className='min-h-[700px] w-screen  bg-[#2c262d] py-20 pl-[150px]'>
+      <div className='min-h-[700px] w-screen bg-[#10100e] py-20 pl-[150px]'>
         {
           blogFilter.map(blog => (
             <div
               key={blog.id}
-              className="flex flex-col w-screen lg:w-[90vw] px-2 px-5 lg:px-20"
+              className="flex flex-col w-screen lg:w-[90vw] lg:px-20"
             >
-              <h1 className='blog-item font-title2 text-black text-5xl sm:text-7xl'>{blog.title}</h1>
-              <div className="border-b-2 border-black w-2 w-full py-2"></div>
+              <h1 className='blog-item font-title2 text-white text-5xl sm:text-7xl'>{blog.title}</h1>
+              <div className="border-b-2 border-[#aaaaaa] w-2 w-full py-2"></div>
               <div className="flex justify-start gap-x-2 my-10">
                 <p className='font-body text-[#aaaaaa] text-sm'>{blog.date}</p>
-                <div className="border border-black rounded-full px-2">
+                <div className="border border-[#aaaaaa] rounded-full px-2">
                   <p className='font-body text-[#aaaaaa] text-sm'>{blog.tag}</p>
                 </div>
               </div>
-              <div className={'rounded-l-full mx-auto w-full max-h-[64vh] object-contain object-center rounded-[10px] group relative overflow-hidden'}>
+              <div className={'mx-auto w-full max-h-[64vh] object-contain object-center group relative overflow-hidden'}>
                 <img src={blog.img} className={'w-full h-full object-cover hover:scale-[110%] transition-scale duration-500'} />
               </div>
               <div className="flex flex-col">

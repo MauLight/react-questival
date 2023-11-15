@@ -11,11 +11,11 @@ export const Feed = ({ lessons, setError }) => {
       initial="hidden"
       whileInView={'show'}
       viewport={{ once: false, amount: 0.7 }}
-      className="joy hidden min-[1200px]:flex items-center pl-[190px] overflow-x-scroll scrollbar-none py-10 h-screen bg-[#10100e] w-screen"
+      className="flex items-center lg:pl-[188px] overflow-x-scroll scrollbar-none max-lg:pb-10 max-lg:pt-12 lg:py-10 h-screen bg-[#10100e] w-screen"
     >
       <div
 
-        className="flex border-y border-[#464648] h-full">
+        className="flex border-b border-[#464648] lg:border-t border-[#464648] h-full">
         {
           lessons && lessons.map(post => <Link key={post.id} to={`/lessons/${post.id}`} >
             <Card

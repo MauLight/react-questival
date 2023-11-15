@@ -3,7 +3,7 @@ import hero from '../assets/end.mp4'
 export const Banner = () => {
   return (
     <div
-      className="flex w-full h-screen overflow-hidden scrollbar-none"
+      className="hidden md:flex w-full h-screen overflow-hidden scrollbar-none"
     >
       <video
         src={hero}

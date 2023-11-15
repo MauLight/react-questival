@@ -54,8 +54,8 @@ export const JoyBookIndex = () => {
 
   if (resultPosts.loading) {
     return (
-      <div className='flex justify-center items-center h-[700px] w-full'>
-        <div className="flex justify-center items-center h-[700px] w-screen">
+      <div className='flex justify-center items-center w-full'>
+        <div className="flex justify-center items-center w-screen">
 
           <InfinitySpin
             color="white"
@@ -77,7 +77,7 @@ export const JoyBookIndex = () => {
   }
 
   return (
-    <div id='joybook' className={'min-[1200px]:flex justify-center items-center border-y-2 relative'}>
+    <div id='joybook' className={'flex justify-center items-center border-y-2 relative'}>
       <div className="absolute top-[10%] z-40">
         <Notification errorMessage={errorMessage} type={type} />
       </div>
@@ -101,7 +101,6 @@ export const JoyBookIndex = () => {
                     <JoyForm setToken={setToken} setError={notify} setSigned={setSigned} />
                   )
               }
-              <div className="hidden min-[1200px]:flex border-l-2 w-2 h-[400px] py-5"></div>
               <Banner />
             </>
           )

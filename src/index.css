@@ -34,3 +34,7 @@ scrollbar {
 -webkit-box-shadow: 3px 3px 6px -1px rgba(0,0,0,0.62);
 -moz-box-shadow: 3px 3px 6px -1px rgba(0,0,0,0.62);
 }
+
+.poster {
+  height: -webkit-fill-available;
+}

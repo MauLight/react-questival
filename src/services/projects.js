@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/projects'
+const baseUrl = 'https://questivalapp-backend.onrender.com/api/projects'
 
 let token = null
 
