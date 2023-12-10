@@ -2,49 +2,14 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { userInfo } from '../utils/user'
 import { Blog, Schematics, SendAlt, TableOfContents, Course } from '@carbon/icons-react'
-import { useApolloClient, useMutation, useQuery } from '@apollo/client'
-import { ALL_POSTS, EDIT_BIO, ME } from '../queries/queries'
 import axios from 'axios'
-import { InfinitySpin } from 'react-loader-spinner'
 import { Link } from 'react-router-dom'
 
-export const Profile = ({ setError, setToken }) => {
+export const Profile = ({ setToken }) => {
 
   //Cloudinary State
   const [cloudinaryAvatarImage, setCloudinaryAvatarImage] = useState('')
 
-  const client = useApolloClient()
-
-  const [editAvatar] = useMutation(EDIT_BIO, {
-    refetchQueries: [{ query: ALL_POSTS }],
-    onError: (error) => {
-      const messages = error.graphQLErrors[0].message
-      console.log(messages)
-      setError(messages)
-    }
-
-  })
-
-  // eslint-disable-next-line no-unused-vars
-  const { loading, error, data } = useQuery(ME)
-
-  if (loading) {
-
-    return (
-      <div className='flex justify-center items-center h-screen w-full'>
-
-
-        <InfinitySpin
-          color="white"
-        />
-
-      </div>
-    )
-  }
-
-  if (error) {
-    console.log(`Error: ${error.message}`)
-  }
 
   const handleAvatar = (e) => {
 
@@ -61,7 +26,6 @@ export const Profile = ({ setError, setToken }) => {
       .then((response) => {
         console.log(response)
         setCloudinaryAvatarImage(response.data.secure_url)
-        editAvatar({ variables: { pic: response.data.secure_url } })
       })
       .catch((error) => {
         console.log(error)
@@ -71,7 +35,6 @@ export const Profile = ({ setError, setToken }) => {
   const handleLogOut = () => {
     setToken(null)
     localStorage.clear()
-    client.resetStore()
     window.location.href = 'https://screenwriters.quest/'
   }
 
@@ -119,12 +82,12 @@ export const Profile = ({ setError, setToken }) => {
 
       </div>
 
-      <div className='flex justify-center items-center mt-auto mb-[53%]'>
+      <div className='flex justify-centeritems-center mt-auto mb-[53%]'>
         <motion.button
           onClick={handleLogOut}
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-          className='font-carbon text-[12px] border border-[#464648] p-4 rounded-full w-[90px] h-[90px] bg-[#10100e] text-white hover:bg-white hover:text-[#3b1950] active:bg-[#10100e] active:text-white font-body'
+          className='font-carbon text-[12px] border border-[#464648] p-4 rounded-full w-[90px] h-[90px] bg-[#10100e] text-white hover:bg-[#FC4ECF] hover:text-[#3b1950] active:bg-[#10100e] active:text-white font-body'
         >log-out</motion.button>
       </div>
     </div>
