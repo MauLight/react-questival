@@ -9,11 +9,17 @@
 
 @font-face {
   font-family: "ZHOW";
-  src: url("./fonts/uncharted.otf");
+  src: url("./fonts/Bison-Bold.ttf");
 }
 @font-face {
   font-family: "CHILLAX";
   src: url("./fonts/Chillax.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .glow {
@@ -60,4 +66,14 @@ input:-webkit-autofill:active{
 .pdf-embed iframe {
   filter: invert(0.85);
   background-color: #292928 !important;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--red);
+  transform-origin: 0%;
 }

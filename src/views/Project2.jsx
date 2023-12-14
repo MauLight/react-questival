@@ -111,7 +111,7 @@ export const Project2 = ({ currentUser, setError }) => {
       return -1
     }
 
-    if(type === '1') {
+    if (type === '1') {
       let fileUrl = file || poster
 
       const project = {
@@ -144,7 +144,7 @@ export const Project2 = ({ currentUser, setError }) => {
       }
     }
 
-    if(type === '2') {
+    if (type === '2') {
       let fileUrl = file || pitch
 
       const project = {
@@ -188,7 +188,7 @@ export const Project2 = ({ currentUser, setError }) => {
         basis,
         protagonist: character,
         opposition,
-        screenplay:fileUrl,
+        screenplay: fileUrl,
         pitch,
         poster,
       }
@@ -234,10 +234,13 @@ export const Project2 = ({ currentUser, setError }) => {
   }, [])
 
   return (
-    <div className='flex flex-col h-screen w-screen overflow-hidden pl-[10%] bg-[#10100e]'>
+    <div className='flex flex-col h-screen w-screen lg:max-xl:pl-[15%] min-[1270px]:max-[1464px]:pl-[13%] min-[1464px]:pl-[10%] bg-[#10100e] max-lg:mt-20'>
       <Title title={title} setTitle={setTitle} />
       <div className="h-4/5 flex h-full">
-        <div className="w-4/5 overflow-y-scroll overflow-x-hidden scrollbar-none">
+        <div className="w-full md:w-2/3 lg:w-4/5 overflow-y-scroll overflow-x-hidden scrollbar-none">
+          <div className='md:hidden flex'>
+            <Poster poster={poster} handlePoster={handlePoster} handleSave={handleSave} />
+          </div>
           <Logline logline={logline} setLogline={setLogline} summary={summary} setSummary={setSummary} />
           <Myth myth={myth} setMyth={setMyth} />
           <Basis basis={basis} setBasis={setBasis} />
@@ -246,7 +249,7 @@ export const Project2 = ({ currentUser, setError }) => {
           <Pitch handlePitch={handlePitch} pitch={pitch} />
           <Screenplay handleScreenplay={handleScreenplay} screenplay={screenplay} />
         </div>
-        <div className="w-1/4 border-l border-[#464648] overflow-hidden">
+        <div className="hidden md:flex w-1/3 min-[1600px]:w-1/4 border-l border-[#464648] overflow-hidden">
           <Poster poster={poster} handlePoster={handlePoster} handleSave={handleSave} />
         </div>
       </div>

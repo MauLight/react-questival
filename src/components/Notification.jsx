@@ -13,7 +13,7 @@ export default function Notification({ errorMessage, type }) {
   }
 
   return (
-    <div id="error" className={type ? 'bg-green-700 text-5xl font-body p-5 rounded my-2' : 'bg-red-600 text-5xl font-body p-5 rounded my-2'}>
+    <div id="error" className={type === 'add' ? 'bg-green-700 text-5xl font-body p-5 rounded my-2' : 'bg-red-600 text-5xl font-body p-5 rounded my-2'}>
       {message}
     </div>
   )

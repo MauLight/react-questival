@@ -4,11 +4,19 @@ import { Sling as Hamburger } from 'hamburger-react'
 import { Blog as BlogIcon, Schematics, SendAlt, TableOfContents, Course } from '@carbon/icons-react'
 import { fadeInSmall } from '../variants'
 
+import logo from '../assets/logo.webm'
+
 export const Navbar = ({ menu, setMenu }) => {
   return (
-    <div className="flex justify-between items-center fixed w-full py-0 sm:py-2 px-3 sm:px-10 z-[2] border-b border-[#464648] bg-[#10100e]">
+    <div className="flex justify-between items-center fixed w-full py-0 sm:py-2 px-3 sm:px-10 z-[2] border-b border-[#464648] bg-[#10100e] max-h-20">
       <Link to={'/'}>
-        <h1 className='text-2xl font-title2 text-white glow uppercase'>Questival</h1>
+        <video
+          src={logo}
+          autoPlay
+          loop
+          muted
+          className='w-auto h-12 sm:h-[10vh] object-cover'
+        />
       </Link>
       <>
         <div className='hidden sm:flex justify-center items-center font-body text-md gap-x-4'>

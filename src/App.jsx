@@ -15,6 +15,7 @@ import Notification from './components/Notification'
 import { Banner } from './components/Banner'
 import { Feed } from './components/Feed'
 import { Profile } from './components/Profile'
+import { Test } from './views/Test'
 
 
 
@@ -67,7 +68,7 @@ export const App = () => {
         token ?
           (
             <div className='flex overflow-x-hidden'>
-              <div className="hidden lg:flex w-[10%] fixed bg-[#3b1950] z-10">
+              <div className="hidden lg:flex w-[10%] fixed bg-[#3b1950] z-50">
                 <Profile setType={setType} setToken={setToken} setError={setErrorMessage} />
               </div>
               <div className="flex lg:hidden">
@@ -77,6 +78,7 @@ export const App = () => {
                 <Routes>
                   <Route path="/" element={<Feed lessons={lessons} setError={setErrorMessage} />} />
                   <Route path="/syllabus" element={<Syllabus />} />
+                  <Route path="/test" element={<Test />} />
                   <Route path="/myproject" element={<Project2 currentUser={user} setError={setErrorMessage} />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blogpost/:id" element={<BlogPost blogId={blogId} />} />

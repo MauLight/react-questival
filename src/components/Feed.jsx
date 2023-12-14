@@ -11,7 +11,7 @@ export const Feed = ({ lessons, setError }) => {
       initial="hidden"
       whileInView={'show'}
       viewport={{ once: false, amount: 0.7 }}
-      className="flex items-center lg:pl-[188px] overflow-x-scroll scrollbar-none max-lg:pb-10 max-lg:pt-12 lg:py-10 h-screen bg-[#10100e] w-screen"
+      className="flex items-center lg:pl-[11vw] overflow-x-scroll scrollbar-none max-lg:pb-10 max-lg:pt-12 lg:py-10 h-screen bg-[#10100e] w-screen"
     >
       <div
 
