@@ -14,7 +14,7 @@ export const Portfolio = () => {
         <div className="w-screen h-screen absolute flex justify-center items-center pl-10  z-20">
           <Avatar />
         </div>
-        <img src='https://preview.redd.it/oet48qxt3k831.jpg?auto=webp&s=8052334843441c2edf68bf2a1569b5885cf77b3a' className='h-screen w-screen absolute z-0 left-[1%] object-cover blur-sm opacity-90' />
+        <img src='https://film-grab.com/wp-content/uploads/photo-gallery/Oppenheimer_02.jpg?bwg=1699893938' className='h-screen w-screen absolute z-0 left-[1%] object-cover blur-sm opacity-90' />
         <div className="absolute top-[60%] left-[90%] flex w-full justify-between z-50">
           <ProfileCard />
         </div>
