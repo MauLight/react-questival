@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { userInfo } from '../utils/user'
-import { Blog, Schematics, SendAlt, TableOfContents, Course } from '@carbon/icons-react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
@@ -68,26 +67,30 @@ export const Profile = ({ setToken }) => {
 
       <div className="flex flex-col justify-start items-start gap-y-4 px-5 py-[13.7vh] w-full border-b border-[#464648]">
 
+        <Link to={'/portfolio'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
+          <i className="fa-solid fa-briefcase"></i>
+          <p className='text-sm font-body'>Portfolio</p>
+        </Link>
         <Link to={'/myproject'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <Schematics size={16} />
+          <i className="fa-regular fa-folder-open"></i>
           <p className='text-sm font-body'>My Project</p>
         </Link>
         <Link to={'/'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <Course size={16} />
+          <i className="fa-solid fa-graduation-cap"></i>
           <p className='text-sm font-body'>Course</p>
         </Link>
         <Link to={'/syllabus'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <TableOfContents size={16} />
+          <i className="fa-solid fa-list-check"></i>
           <p className='text-sm font-body'>Syllabus</p>
         </Link>
         <Link to={'/blog'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <Blog size={16} />
+          <i className="fa-solid fa-blog"></i>
           <p className='text-sm font-body'>Blog</p>
         </Link>
-        <Link to={'/'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <SendAlt size={16} />
+        <a href='https://t.me/+8BUhBaokyQUwYzZh' className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
+          <i className="fa-regular fa-paper-plane"></i>
           <p className='text-sm font-body'>Contact</p>
-        </Link>
+        </a>
 
       </div>
 

@@ -16,6 +16,8 @@ import { Banner } from './components/Banner'
 import { Feed } from './components/Feed'
 import { Profile } from './components/Profile'
 import { Test } from './views/Test'
+import { lessons as thelessons } from './utils/posts.js'
+import { Portfolio } from './views/Portfolio.jsx'
 
 
 
@@ -27,7 +29,8 @@ export const App = () => {
   const [type, setType] = useState(null)
   const [menu, setMenu] = useState('hide')
 
-  const [lessons, setLessons] = useState(null)
+  // eslint-disable-next-line no-unused-vars
+  const [lessons, setLessons] = useState(thelessons)
 
   const matchBlog = useMatch('/blogpost/:id')
   const blogId = matchBlog ? matchBlog.params.id : null
@@ -37,17 +40,17 @@ export const App = () => {
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('QuestivalUser')
     if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      setToken(user.token)
+      const currentUser = JSON.parse(loggedUserJSON)
+      console.log('This is the user:', user)
+      setUser(currentUser)
+      setToken(currentUser.token)
     }
   }, [])
 
   useEffect(() => {
     getAll()
       .then(response => {
-        console.log('Fetching lessons fulfilled!')
-        setLessons(response)
+        console.log('Fetching lessons fulfilled!', response)
       })
   }, [])
 
@@ -74,11 +77,12 @@ export const App = () => {
               <div className="flex lg:hidden">
                 <Navbar menu={menu} setMenu={setMenu} />
               </div>
-              <div className="">
+              <div className="relative">
                 <Routes>
                   <Route path="/" element={<Feed lessons={lessons} setError={setErrorMessage} />} />
                   <Route path="/syllabus" element={<Syllabus />} />
                   <Route path="/test" element={<Test />} />
+                  <Route path="/portfolio" element={<Portfolio currentUser={user} setError={setErrorMessage} />} />
                   <Route path="/myproject" element={<Project2 currentUser={user} setError={setErrorMessage} />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blogpost/:id" element={<BlogPost blogId={blogId} />} />

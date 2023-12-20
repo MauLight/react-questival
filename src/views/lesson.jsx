@@ -4,11 +4,11 @@ export const Lesson = ({ lessons, lessonId }) => {
 
   const lessonFilter = lessons?.filter(blog => blog.id === lessonId)
 
-  console.log(lessonFilter)
+  console.log('This is the lesson', lessonFilter)
 
   return (
-    <div className="flex w-screen h-screen pl-[190px] overflow-y-hidden">
-      <div className="flex flex-col w-full border-r border-[#464648] overflow-y-scroll">
+    <div className="flex w-screen h-screen pl-[210px] overflow-y-hidden">
+      <div className="flex flex-col w-full  overflow-y-scroll pt-10">
         <video
           src={hero}
           type='video/mp4'
@@ -16,15 +16,15 @@ export const Lesson = ({ lessons, lessonId }) => {
           controls={false}
           muted
           autoPlay
-          className="object-cover w-full min-h-[69.1vh] max-h-[69.1vh] box-border overflow-hidden border-b border-[#464648]"
+          className="object-cover w-full min-h-[79.1vh] max-h-[69.1vh] box-border overflow-hidden border border-[#464648]"
         />
-        <div className='px-20 py-10 '>
+        <div className='px-20 py-10 border-r border-[#464648]'>
           <p className='font-body text-xl text-white'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.
           </p>
         </div>
       </div>
-      <div className="flex flex-col h-screen w-[13%] border-t border-[#464648] mt-10">
+      <div className="flex flex-col h-screen w-[18%] border-t border-[#464648] mt-10">
         <div className='text-2xl font-title2 text-white p-5 text-center border-b border-[#464648] uppercase glow'>Lessons</div>
         <div className="my-5 border-b border-[#464648] h-[55.3vh]">
           {

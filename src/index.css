@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "ZHOW";
-  src: url("./fonts/Bison-Bold.ttf");
+  src: url("./fonts/Basis.ttf");
 }
 @font-face {
   font-family: "CHILLAX";
@@ -77,3 +77,4 @@ input:-webkit-autofill:active{
   background: var(--red);
   transform-origin: 0%;
 }
+

@@ -7,6 +7,8 @@ import { motion } from 'framer-motion'
 import loginService from '../services/login'
 import projectsService from '../services/projects'
 
+import logo from '../assets/logo.webm'
+
 export const JoyForm = ({ setUser, setToken, setError }) => {
 
   const [email, setEmail] = useState('')
@@ -32,12 +34,13 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
       console.log(user)
       window.localStorage.setItem('QuestivalUser', JSON.stringify(user))
       projectsService.setToken(user.token)
+      console.log('this is the new user:', user)
       setUser(user)
       setToken(user)
       setEmail('')
       setPassword('')
     }
-    catch(exception) {
+    catch (exception) {
       setError('Wrong credentials')
       setTimeout(() => {
         setError(null)
@@ -65,17 +68,26 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
 
   return (
     <>
-      <div className="flex justify-center items-center max-md:items-center flex-col gap-y-4 px-10 bg-transparent border-0 min-h-screen scrollbar-none z-10">
-        <div className='w-[300px] max-md:w-full flex flex-col mb-2 mb-[40px]'>
-          <h1
-            className='text-4xl sm:text-[58px] font-title2 text-white mt-0 text-center uppercase glow mt-2'>Questival</h1>
+      <div className="flex justify-center items-center max-md:items-start flex-col gap-y-4 px-10 pb-32 bg-transparent border-0 min-h-screen scrollbar-none z-10">
+        <div className='w-[300px] h-full max-md:w-full flex flex-col mb-2'>
+          <div className='flex justify-center items-center w-full px-2'>
+            <a href='https://screenwriters.quest/'>
+              <video
+                src={logo}
+                autoPlay
+                loop
+                muted
+                className='flex items-center w-full h-auto object-cover'
+              />
+            </a>
+          </div>
         </div>
         <div className='max-w-[300px] w-full'>
           <input
             id='email'
             placeholder='Email'
             type='text'
-            className='glass pl-4 h-12 p-2 text-white bg-transparent w-full rounded-md focus:ring-0 focus:outline-none '
+            className='glass pl-4 h-12 p-2 text-white bg-transparent w-full rounded-md focus:ring-0 focus:outline-none'
             value={email}
             onChange={({ target }) => setEmail(target.value)}
           />

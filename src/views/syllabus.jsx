@@ -38,19 +38,19 @@ export const Syllabus = () => {
   }
 
   return (
-    <div className="w-screen lg:pl-[188px] flex flex-col h-screen bg-[#10100e] font-body overflow-y-hidden">
+    <div className="w-screen lg:pl-[210px] flex flex-col h-screen bg-[#10100e] font-body overflow-y-hidden">
       <motion.div
         variants={fadeInSmall('left', 0.2)}
         initial="hidden"
         whileInView={'show'}
         viewport={{ once: false, amount: 0.7 }}>
         <h1 className='text-5xl sm:text-8xl font-title2 uppercase text-white mb-10 mt-10 w-full pt-12 px-10 text-right'>{title}</h1>
-        <div className="flex justify-center h-[50.4vh] items-start overflow-y-scroll">
-          <div className="w-full">
+        <div className="flex justify-center h-[57.4vh] w-1/2 items-start overflow-y-scroll border border-[#464648] border-b-0">
+          <div className="w-full pb-12">
             {
               currentPage.map(lesson => (
                 <Accordion key={lesson.id} variant="splitted">
-                  <AccordionItem key={lesson.pos} aria-label="Accordion 1" className='font-body text-xl sm:text-2xl text-[#aaaaaa] hover:text-white transition-color duration-200 border-t border-[#464648]' title={lesson.title}>
+                  <AccordionItem key={lesson.pos} aria-label="Accordion 1" className='font-body text-xl sm:text-2xl text-[#aaaaaa] hover:text-white transition-color duration-200 border-b border-[#464648]' title={lesson.title}>
                     <ul className='text-lg sm:text-xl mb-10'>
                       {
                         lesson.elements.map(item => (
@@ -69,10 +69,10 @@ export const Syllabus = () => {
         </div>
         <div className="flex justify-end pr-10 items-center w-full pl-20 gap-x-5 pt-8 border-t border-[#464648]">
           <button onClick={handlePageDown}>
-            <ArrowLeft size={32} className='flex text-black w-[100px] sm:w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' />
+            <ArrowLeft size={32} className='flex text-[#FC4ECF] w-[50px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' />
           </button>
           <button onClick={handlePageUp} >
-            <ArrowRight size={32} className='flex text-black w-[100px] sm:w-[150px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' />
+            <ArrowRight size={32} className='flex text-[#FC4ECF] w-[50px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' />
           </button>
         </div>
       </motion.div>
