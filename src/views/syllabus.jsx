@@ -38,14 +38,14 @@ export const Syllabus = () => {
   }
 
   return (
-    <div className="w-screen lg:pl-[210px] flex flex-col h-screen bg-[#10100e] font-body overflow-y-hidden">
+    <div className="w-full flex flex-col h-screen bg-[#10100e] font-body overflow-y-hidden">
       <motion.div
         variants={fadeInSmall('left', 0.2)}
         initial="hidden"
         whileInView={'show'}
         viewport={{ once: false, amount: 0.7 }}>
         <h1 className='text-5xl sm:text-8xl font-title2 uppercase text-white mb-10 mt-10 w-full pt-12 px-10 text-right'>{title}</h1>
-        <div className="flex justify-center h-[57.4vh] w-1/2 items-start overflow-y-scroll border border-[#464648] border-b-0">
+        <div className="flex justify-center h-[57.4vh] w-full lg:w-1/2 items-start overflow-y-scroll border border-[#464648] border-b-0">
           <div className="w-full pb-12">
             {
               currentPage.map(lesson => (
@@ -67,7 +67,7 @@ export const Syllabus = () => {
             }
           </div>
         </div>
-        <div className="flex justify-end pr-10 items-center w-full pl-20 gap-x-5 pt-8 border-t border-[#464648]">
+        <div className="flex justify-center sm:justify-end sm:pr-10 items-center w-full sm:pl-20 gap-x-5 max-sm:py-4 sm:pt-8 border-t border-[#464648]">
           <button onClick={handlePageDown}>
             <ArrowLeft size={32} className='flex text-[#FC4ECF] w-[50px] h-auto hover:text-[#aaaaaa] active:scale-105 transition-all duration-200' />
           </button>

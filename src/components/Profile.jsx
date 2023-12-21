@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { userInfo } from '../utils/user'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-
-import logo from '../assets/logo.webm'
+import { Logo } from './Navbar/Logo'
+import { ProfilePic } from './Navbar/ProfilePic'
+import { NavMenu } from './Navbar/NavMenu'
+import { Logout } from './Navbar/Logout'
 
 export const Profile = ({ setToken }) => {
 
@@ -39,67 +40,19 @@ export const Profile = ({ setToken }) => {
   }
 
   return (
-    <div className="flex justify-center items-center object-cover flex-col min-w-[190px] h-screen bg-[#10100e] "
+    <div className="flex justify-center items-center object-cover flex-col w-full h-screen bg-[#10100e]"
     >
-      <div className='flex justify-center items-center w-full px-2 h-[13vh]'>
-        <a href='https://screenwriters.quest/'>
-          <video
-            src={logo}
-            autoPlay
-            loop
-            muted
-            className='flex items-center w-full h-auto object-cover'
-          />
-        </a>
-      </div>
+      <Logo />
 
-      <div className='flex items-center w-full justify-center'>
-        <label className='h-[32.8vh]'>
-          <img className='w-full h-full object-cover border-y border-r border-[#464648] cursor-pointer' src={cloudinaryAvatarImage ? cloudinaryAvatarImage : userInfo.pic} />
-          <input
-            type="file"
-            name="upload-avatar"
-            onChange={(e) => handleAvatar(e)}
-            className="w-0 h-0"
-          />
-        </label>
-      </div>
+      <ProfilePic
+        handleAvatar={handleAvatar}
+        cloudinaryAvatarImage={cloudinaryAvatarImage}
+        userInfo={userInfo}
+      />
 
-      <div className="flex flex-col justify-start items-start gap-y-4 px-5 py-[13.7vh] w-full border-b border-[#464648]">
+      <NavMenu />
 
-        <Link to={'/portfolio'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <i className="fa-solid fa-briefcase"></i>
-          <p className='text-sm font-body'>Portfolio</p>
-        </Link>
-        <Link to={'/myproject'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <i className="fa-regular fa-folder-open"></i>
-          <p className='text-sm font-body'>My Project</p>
-        </Link>
-        <Link to={'/'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <i className="fa-solid fa-graduation-cap"></i>
-          <p className='text-sm font-body'>Course</p>
-        </Link>
-        <Link to={'/syllabus'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <i className="fa-solid fa-list-check"></i>
-          <p className='text-sm font-body'>Syllabus</p>
-        </Link>
-        <Link to={'/blog'} className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <i className="fa-solid fa-blog"></i>
-          <p className='text-sm font-body'>Blog</p>
-        </Link>
-        <a href='https://t.me/+8BUhBaokyQUwYzZh' className="flex justify-center items-center gap-x-1 text-[#aaaaaa] hover:text-white">
-          <i className="fa-regular fa-paper-plane"></i>
-          <p className='text-sm font-body'>Contact</p>
-        </a>
-
-      </div>
-
-      <div className='flex justify-center items-center w-full h-full border-r border-[#464648]'>
-        <button
-          onClick={handleLogOut}
-          className='font-carbon text-[12px] p-4 w-full h-full bg-[#10100e] text-white hover:bg-[#FC4ECF] hover:text-[#3b1950] active:bg-[#10100e] active:text-white font-body'
-        >log-out</button>
-      </div>
+      <Logout handleLogOut={handleLogOut} />
     </div>
   )
 }

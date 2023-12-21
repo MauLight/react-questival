@@ -48,7 +48,7 @@ scrollbar {
 
 .glass {
   background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
@@ -78,3 +78,16 @@ input:-webkit-autofill:active{
   transform-origin: 0%;
 }
 
+.wrapper {
+  perspective: 10px;
+}
+
+.header {
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+.background {
+  transform: translateZ(-10px) scale(3);
+  z-index: -1;
+}

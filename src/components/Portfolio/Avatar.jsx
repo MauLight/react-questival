@@ -2,8 +2,8 @@ import React from 'react'
 
 export const Avatar = () => {
   return (
-    <div className="w-[32vw] h-[78vh] border-4 rounded-sm overflow-hidden border-[#0b1014] relative">
-      <div className="flex flex-col left-[82%] gap-y-2 top-5 absolute z-10">
+    <div className="w-screen h-auto lg:w-[585px] lg:h-[630px] border-4 overflow-hidden border-[#0b1014] relative rounded-md">
+      <div className="flex flex-col right-[6%] sm:right-[4%] lg:right-[2%] gap-y-2 top-5 absolute z-10">
         <div className="flex flex-col justify-center items-center">
           <h1 className='text-white font-body text-4xl'>12</h1>
           <h1 className='text-white font-body text-md'>screenplays</h1>

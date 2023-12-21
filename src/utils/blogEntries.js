@@ -26,19 +26,6 @@ export const blogs = [
     quote: 'Denouement; The ending of the story, where any remaining mystery or questions surrounding the plot are answered. In filmmaking there’s a long tradition of using the denouement to present what it’s called a metaphoric scene, one that poetically gives us a sense of the deeper meaning of the story.'
   },
   {
-    id: 'C3',
-    pos: 3,
-    title: 'HOW CHARACTERS IMPROVE YOUR PLOT',
-    date: 'OCTOBER 03, 2022',
-    img: 'https://i0.wp.com/film-grab.com/wp-content/uploads/2022/05/Apollo101_2036.jpg?w=1300&ssl=1',
-    fade: 0.2,
-    tag: 'SCREENWRITING TECHNIQUE',
-    par1: 'There’s an old sayin’ in storytelling; Character + Action = Plot. Well, looks more like a mathematical proposition, but the important thing is that it tells a critical point about writing stories, characters drive the action and the result of their movement is the actual plot. John Gardner, the famous American writer, often said that there are actually only two kinds of plot. Someone goes on a journey; a stranger comes to town. Was he out of imagination when coining this idea? Not sure, but! He’s not far from the truth. What he’s actually saying is that stories involve the movement of certain character. Someone goes on a journey implies a movement to the exterior, into the unknown, a character going away. A stranger comes to town involves the unknown coming into the familiar by the hand of a new character entering a familiar world.',
-    par2: 'Now, maybe Gardner only knew about the hero’s journey, I don’t know. Nowadays I feel we can find a different approach to storytelling in structures such as the virgin’s promise, which is more an inner journey (something we’ll definitely talk about later!). But the important thing to take from his words are the connection between a drive character (the one who acts) and the plot, which comes from this movement.',
-    par3: 'Now, what is this will thing he keeps talking about? Simply put is the combination of a character’s desire and the drive to achieve this desire. A character wants something and goes into action to achieve this goal, the resulting path or journey drawn in the sands of time is what we often call plot. You liked that last reflection? Pretty neat, uh? Let’s join next time to talk about ways of thinking about characters, since they seem so important to storytelling! And remember… GO WRITE!!',
-    quote: 'Another genius of storytelling, Hayao Miyasaki, has two phrases that can shade some light on this matter: What drives action is the WILL of the characters. You don’t depict fate, you depict WILL.'
-  },
-  {
     id: 'D4',
     pos: 4,
     title: 'QUESTIONS FOR CHARACTER DEVELOPMENT',

@@ -21,10 +21,11 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
     e.preventDefault()
 
     if (email === '' || password === '') {
-      setError('Dumbass')
+      setError('Wrong username or password.')
       setTimeout(() => {
         setError(null)
       }, 5000)
+      return
     }
 
     try {
@@ -82,7 +83,7 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
             </a>
           </div>
         </div>
-        <div className='max-w-[300px] w-full'>
+        <div className='md:max-w-[300px] w-full'>
           <input
             id='email'
             placeholder='Email'
@@ -92,7 +93,7 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
             onChange={({ target }) => setEmail(target.value)}
           />
         </div>
-        <div className='max-w-[300px] w-full'>
+        <div className='md:max-w-[300px] w-full'>
           <input
             id='password'
             placeholder='password'
@@ -102,8 +103,8 @@ export const JoyForm = ({ setUser, setToken, setError }) => {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <div className="flex justify-start">
-          <small className='text-carbon text-[12px] font-body text-white max-w-[280px] px-2'>{'By clicking Login, you agree to our Terms, Privacy Policy and Cookies Policy.'}</small>
+        <div className="flex justify-start max-md:my-5 max-md:justify-center w-full">
+          <small className='text-carbon text-[12px] font-body text-white md:max-w-[280px] px-2'>{'By clicking Login, you agree to our Terms, Privacy Policy and Cookies Policy.'}</small>
         </div>
         <div className='flex justify-center items-center mt-5 w-full'>
           <motion.button

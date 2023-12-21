@@ -64,20 +64,20 @@ export const App = () => {
 
   return (
     <div id='joybook' className={'flex relative bg-[#10100e] h-screen scrollbar-none'}>
-      <div className="absolute top-[10%] left-[45%] z-40">
+      <div className="flex justify-center absolute top-[0%] z-40 w-full">
         <Notification errorMessage={errorMessage} type={type} />
       </div>
       {
         token ?
           (
-            <div className='flex overflow-x-hidden'>
-              <div className="hidden lg:flex w-[10%] fixed bg-[#3b1950] z-50">
+            <div className='flex max-xl:flex-col overflow-x-hidden w-screen'>
+              <div className="hidden xl:flex w-[10%] fixed z-50">
                 <Profile setType={setType} setToken={setToken} setError={setErrorMessage} />
               </div>
-              <div className="flex lg:hidden">
+              <div className="flex xl:hidden z-50">
                 <Navbar menu={menu} setMenu={setMenu} />
               </div>
-              <div className="relative">
+              <div className="relative overflow-x-hidden w-full xl:w-[90%] max-xl:flex max-xl:justify-center max-xl:px-2 max-xl:items-center xl:ml-[10%]">
                 <Routes>
                   <Route path="/" element={<Feed lessons={lessons} setError={setErrorMessage} />} />
                   <Route path="/syllabus" element={<Syllabus />} />
