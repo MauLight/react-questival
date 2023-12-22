@@ -14,7 +14,7 @@ import { Pitch } from '../components/Project/Pitch'
 import { Screenplay } from '../components/Project/Screenplay'
 import { getUser } from '../services/user'
 
-const placeholder = 'https://images.unsplash.com/photo-1611063158871-7dd3ed4a2ac8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+const placeholder = 'https://i.postimg.cc/DydzwSZW/Them.jpg'
 
 export const Project2 = ({ currentUser, setError }) => {
 

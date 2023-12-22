@@ -14,7 +14,7 @@ export const Card = ({ id, title, lesson, img, body, tags }) => {
         <h1 className='font-title2 text-xl sm:text-[40px] mb-5  text-white px-5 uppercase'>{title}</h1>
       </div>
       <img className='h-[60%] lg:h-[40%] xl:h-[50%] w-full object-cover mx-auto border-y border-[#464648]' src={img} />
-      <div className="glass hidden min-[400px]:flex lg:hidden xl:flex justify-center py-3">
+      <div className="glass hidden min-[480px]:flex lg:hidden xl:flex justify-center py-3">
         {
           tags.map((tag, i) => (
             <div key={i} className="border-2 rounded-full px-2 py-1 my-3 mx-1 border-[#aaaaaa]">

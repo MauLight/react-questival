@@ -75,7 +75,7 @@ export const App = () => {
                 <Profile setType={setType} setToken={setToken} setError={setErrorMessage} />
               </div>
               <div className="flex xl:hidden z-50">
-                <Navbar menu={menu} setMenu={setMenu} />
+                <Navbar menu={menu} setMenu={setMenu} setToken={setToken} />
               </div>
               <div className="relative overflow-x-hidden w-full xl:w-[90%] max-xl:flex max-xl:justify-center max-xl:px-2 max-xl:items-center xl:ml-[10%]">
                 <Routes>
